@@ -5,16 +5,9 @@ public class Reverie {
     private static Task[] tasks = new Task[100];
     private static int taskCount = 0;
 
-    public static void main(String[] args) {
+    private static void printWelcomeMessage() {
         // Reverie picture
-        String[] logo = {
-                "██████╗ ███████╗██╗   ██╗███████╗██████╗ ██╗███████╗",
-                "██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██║██╔════╝",
-                "██████╔╝█████╗  ██║   ██║█████╗  ██████╔╝██║█████╗  ",
-                "██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══╝  ██╔══██╗██║██╔══╝  ",
-                "██║  ██║███████╗ ╚████╔╝ ███████╗██║  ██║██║███████╗",
-                "╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝"
-        };
+        String[] logo = getLogo();
 
         System.out.println(HORIZONTAL_LINE);
         // Print Reverie picture
@@ -26,7 +19,21 @@ public class Reverie {
         System.out.println(" Hello! I'm Reverie");
         System.out.println(" What can I do for you?");
         System.out.println(HORIZONTAL_LINE);
+    }
 
+    private static String[] getLogo() {
+        return {
+                "██████╗ ███████╗██╗   ██╗███████╗██████╗ ██╗███████╗",
+                "██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██║██╔════╝",
+                "██████╔╝█████╗  ██║   ██║█████╗  ██████╔╝██║█████╗  ",
+                "██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══╝  ██╔══██╗██║██╔══╝  ",
+                "██║  ██║███████╗ ╚████╔╝ ███████╗██║  ██║██║███████╗",
+                "╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝"
+        };
+    }
+
+    public static void main(String[] args) {
+        printWelcomeMessage();
         Scanner scanner = new Scanner(System.in);
         String input;
 
