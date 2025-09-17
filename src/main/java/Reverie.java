@@ -48,6 +48,16 @@ public class Reverie {
                     }
                 }
                 System.out.println(HORIZONTAL_LINE);
+            } else if (input.toLowerCase().startsWith("mark ")) {
+                if (taskCount == 0) {
+                    System.out.println(" No tasks yet!");   // Default response for empty tasks
+                } else {
+                    int taskNumber = Integer.parseInt(input.substring(5)) - 1;
+                    tasks[taskNumber].markAsDone();
+                    System.out.println(" Nice! I've marked this task as done:");
+                    System.out.println("   " + tasks[taskNumber].getFullStatus());
+                    System.out.println(HORIZONTAL_LINE);
+                }
             } else {
                 tasks[taskCount] = new Task(input);
                 taskCount++;
