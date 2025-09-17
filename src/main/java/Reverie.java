@@ -29,8 +29,6 @@ public class Reverie {
                 "╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝"
         };
 
-
-
         System.out.println(HORIZONTAL_LINE);
         // Print Reverie picture
         for (String line : logo) {
@@ -58,10 +56,7 @@ public class Reverie {
                 System.out.println(HORIZONTAL_LINE);
             }
         }
-
         scanner.close();
-        // Exit message
-        /*System.out.println(" Bye. Hope to see you again soon!");
-        System.out.println(horizontalLine);*/
+
     }
 }
