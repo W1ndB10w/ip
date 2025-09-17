@@ -1,6 +1,7 @@
 import java.awt.desktop.SystemEventListener;
 
 public class Reverie {
+    private static final String horizontalLine = "____________________________________________________________";
     /*private void echoCommand(String command) {
         // Add some personality to specific commands
         String response = command;
@@ -28,7 +29,7 @@ public class Reverie {
                 "╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝"
         };
 
-        String horizontalLine = "____________________________________________________________";
+
 
         System.out.println(horizontalLine);
         // Print Reverie picture
