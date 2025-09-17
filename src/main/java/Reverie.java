@@ -4,21 +4,6 @@ public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static String[] tasks = new String[100];
     private static int taskCount = 0;
-    /*private void echoCommand(String command) {
-        // Add some personality to specific commands
-        String response = command;
-
-        // Optional: Add some fun responses to certain keywords
-        if (command.equalsIgnoreCase("hello") || command.equalsIgnoreCase("hi")) {
-            response = command + "\n    Oh, hello there! Nice to meet you! 😊";
-        } else if (command.equalsIgnoreCase("help")) {
-            response = command + "\n    I'm here to echo whatever you say! Just type 'bye' when you want to leave.";
-        } else if (command.toLowerCase().contains("thank")) {
-            response = command + "\n    You're welcome! Happy to help! 💫";
-        }
-
-        System.out.println(response);
-    }*/
 
     public static void main(String[] args) {
         // Reverie picture
@@ -53,11 +38,23 @@ public class Reverie {
                 System.out.println(" Bye. Hope to see you again soon!");
                 System.out.println(HORIZONTAL_LINE);
                 break;
+            } else if (input.equalsIgnoreCase("list")) {
+                if (taskCount == 0) {
+                    System.out.println(" No tasks yet!");   // Default response for empty tasks
+                } else {
+                    for (int i = 0; i < taskCount; i++) {
+                        System.out.println(" " + (i + 1) + ". " + tasks[i]);
+                    }
+                }
+                System.out.println(HORIZONTAL_LINE);
             } else {
-                System.out.println(" " + input);
+                tasks[taskCount] = input;
+                taskCount++;
+                System.out.println(" added: " + input);
                 System.out.println(HORIZONTAL_LINE);
             }
         }
+
         scanner.close();
 
     }
