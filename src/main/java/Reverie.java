@@ -71,11 +71,17 @@ public class Reverie {
         }
     }
 
+    private static void handleExit(Scanner scanner) {
+        System.out.println(" Bye. Hope to see you again soon!");
+        System.out.println(HORIZONTAL_LINE);
+        scanner.close();
+    }
+
     public static void main(String[] args) {
         printWelcomeMessage();
         processUserCommands();
-        Scanner scanner = new Scanner(System.in);
-        String input;
+        /*Scanner scanner = new Scanner(System.in);
+        String input;*/
 
         while (true) {
             input = scanner.nextLine();
