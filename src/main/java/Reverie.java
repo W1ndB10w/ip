@@ -40,7 +40,7 @@ public class Reverie {
                 break;
             } else if (input.equalsIgnoreCase("list")) {
                 if (taskCount == 0) {
-                    System.out.println(" No tasks yet!");   // Default response for empty tasks
+                    System.out.println(" No tasks added yet!");   // Default response for empty tasks
                 } else {
                     System.out.println(" Here are the tasks in your list:");
                     for (int i = 0; i < taskCount; i++) {
@@ -50,7 +50,7 @@ public class Reverie {
                 System.out.println(HORIZONTAL_LINE);
             } else if (input.toLowerCase().startsWith("mark ")) {
                 if (taskCount == 0) {
-                    System.out.println(" No tasks yet!");   // Default response for empty tasks
+                    System.out.println(" No tasks added yet!");   // Default response for empty tasks
                 } else {
                     int taskNumber = Integer.parseInt(input.substring(5)) - 1;
                     tasks[taskNumber].markAsDone();
@@ -60,7 +60,7 @@ public class Reverie {
                 }
             } else if (input.toLowerCase().startsWith("unmark ")) {
                 if (taskCount == 0) {
-                    System.out.println(" No tasks yet!");   // Default response for empty tasks
+                    System.out.println(" No tasks added yet!");   // Default response for empty tasks
                 } else {
                     int taskNumber = Integer.parseInt(input.substring(7)) - 1;
                     tasks[taskNumber].markAsUndone();
