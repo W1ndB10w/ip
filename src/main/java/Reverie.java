@@ -109,6 +109,11 @@ public class Reverie {
         System.out.println("   " + tasks[taskNumber].getFullStatus());
         System.out.println(HORIZONTAL_LINE);
     }
+
+    private static void handleTodo(String input) {
+        String description = input.substring("todo ".length());
+        addTask(new Todo(description));
+    }
     
     public static void main(String[] args) {
         printWelcomeMessage();
