@@ -76,6 +76,15 @@ public class Reverie {
                 taskCount++;
                 System.out.println(" Now you have " + taskCount + " tasks in the list.");
                 System.out.println(HORIZONTAL_LINE);
+            } else if (input.toLowerCase().startsWith("deadline ")) {
+                String temp = input.substring(9);
+                String[] parts = temp.split(" /by ");
+                tasks[taskCount] = new Deadline(parts[0], parts[1]);
+                System.out.println(" Got it. I've added this task:");
+                System.out.println("   " + tasks[taskCount].getFullStatus());
+                taskCount++;
+                System.out.println(" Now you have " + taskCount + " tasks in the list.");
+                System.out.println(HORIZONTAL_LINE);
             } else {
                 tasks[taskCount] = new Task(input);
                 taskCount++;
