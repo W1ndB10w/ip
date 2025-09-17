@@ -22,7 +22,7 @@ public class Reverie {
     }
 
     private static String[] getLogo() {
-        return {
+        return new String[]{
                 "██████╗ ███████╗██╗   ██╗███████╗██████╗ ██╗███████╗",
                 "██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██║██╔════╝",
                 "██████╔╝█████╗  ██║   ██║█████╗  ██████╔╝██║█████╗  ",
@@ -32,8 +32,48 @@ public class Reverie {
         };
     }
 
+    private static void processUserCommands() {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        while (true) {
+            input = scanner.nextLine();
+            System.out.println(HORIZONTAL_LINE);
+
+            if (input.equalsIgnoreCase("bye")) {
+                handleExit(scanner);
+                break;
+            }
+
+            switch (input.toLowerCase().split(" ")[0]) {
+                case "list":
+                    handleList();
+                    break;
+                case "mark":
+                    handleMark(input, true);
+                    break;
+                case "unmark":
+                    handleMark(input, false);
+                    break;
+                case "todo":
+                    handleTodo(input);
+                    break;
+                case "deadline":
+                    handleDeadline(input);
+                    break;
+                case "event":
+                    handleEvent(input);
+                    break;
+                default:
+                    handleDefault(input);
+                    break;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         printWelcomeMessage();
+        processUserCommands();
         Scanner scanner = new Scanner(System.in);
         String input;
 
