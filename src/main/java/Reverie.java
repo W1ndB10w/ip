@@ -42,6 +42,7 @@ public class Reverie {
                 if (taskCount == 0) {
                     System.out.println(" No tasks yet!");   // Default response for empty tasks
                 } else {
+                    System.out.println(" Here are the tasks in your list:");
                     for (int i = 0; i < taskCount; i++) {
                         System.out.println(" " + (i + 1) + ". " + tasks[i]);
                     }
