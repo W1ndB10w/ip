@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
+    private static String[] tasks = new String[100];
+    private static int taskCount = 0;
     /*private void echoCommand(String command) {
         // Add some personality to specific commands
         String response = command;
