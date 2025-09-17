@@ -64,7 +64,7 @@ public class Reverie {
                 } else {
                     int taskNumber = Integer.parseInt(input.substring(7)) - 1;
                     tasks[taskNumber].markAsUndone();
-                    System.out.println(" OK, I've marked this task as not done yet:");
+                    System.out.println(" OK, I've marked this task as unfinished:");
                     System.out.println("   " + tasks[taskNumber].getFullStatus());
                     System.out.println(HORIZONTAL_LINE);
                 }
