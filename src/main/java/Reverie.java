@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
-    private static String[] tasks = new String[100];
+    private static Task[] tasks = new Task[100];
     private static int taskCount = 0;
 
     public static void main(String[] args) {
@@ -44,12 +44,12 @@ public class Reverie {
                 } else {
                     System.out.println(" Here are the tasks in your list:");
                     for (int i = 0; i < taskCount; i++) {
-                        System.out.println(" " + (i + 1) + ". " + tasks[i]);
+                        System.out.println(" " + (i + 1) + "." + tasks[i].getFullStatus());
                     }
                 }
                 System.out.println(HORIZONTAL_LINE);
             } else {
-                tasks[taskCount] = input;
+                tasks[taskCount] = new Task(input);
                 taskCount++;
                 System.out.println(" added: " + input);
                 System.out.println(HORIZONTAL_LINE);
