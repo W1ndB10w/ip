@@ -119,7 +119,12 @@ public class Reverie {
         String[] parts = input.substring("deadline ".length()).split(" /by ");
         addTask(new Deadline(parts[0], parts[1]));
     }
-    
+
+    private static void handleEvent(String input) {
+        String[] parts = input.substring("event ".length()).split(" /from | /to ");
+        addTask(new Event(parts[0], parts[1], parts[2]));
+    }
+
     public static void main(String[] args) {
         printWelcomeMessage();
         processUserCommands();
