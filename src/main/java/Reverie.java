@@ -77,6 +77,18 @@ public class Reverie {
         scanner.close();
     }
 
+    private static void handleList() {
+        if (taskCount == 0) {
+            System.out.println(" No tasks added yet!");
+        } else {
+            System.out.println(" Here are the tasks in your list:");
+            for (int i = 0; i < taskCount; i++) {
+                System.out.println(" " + (i + 1) + "." + tasks[i].getFullStatus());
+            }
+        }
+        System.out.println(HORIZONTAL_LINE);
+    }
+
     public static void main(String[] args) {
         printWelcomeMessage();
         processUserCommands();
