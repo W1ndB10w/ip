@@ -89,6 +89,27 @@ public class Reverie {
         System.out.println(HORIZONTAL_LINE);
     }
 
+    private static void handleMark(String input, boolean isMark) {
+        if (taskCount == 0) {
+            System.out.println(" No tasks added yet!");
+            System.out.println(HORIZONTAL_LINE);
+            return;
+        }
+
+        int prefixLength = isMark ? "mark ".length() : "unmark ".length();
+        int taskNumber = Integer.parseInt(input.substring(prefixLength)) - 1;
+
+        if (isMark) {
+            tasks[taskNumber].markAsDone();
+            System.out.println(" Nice! I've marked this task as done:");
+        } else {
+            tasks[taskNumber].markAsUndone();
+            System.out.println(" OK, I've marked this task as unfinished:");
+        }
+        System.out.println("   " + tasks[taskNumber].getFullStatus());
+        System.out.println(HORIZONTAL_LINE);
+    }
+    
     public static void main(String[] args) {
         printWelcomeMessage();
         processUserCommands();
