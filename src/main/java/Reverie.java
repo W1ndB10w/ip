@@ -77,7 +77,7 @@ public class Reverie {
         System.out.println(" added: " + input);
         System.out.println(HORIZONTAL_LINE);
     }
-    
+
     private static void handleExit(Scanner scanner) {
         System.out.println(" Bye. Hope to see you again soon!");
         System.out.println(HORIZONTAL_LINE);
@@ -132,11 +132,20 @@ public class Reverie {
         addTask(new Event(parts[0], parts[1], parts[2]));
     }
 
+    private static void addTask(Task task) {
+        tasks[taskCount] = task;
+        System.out.println(" Got it. I've added this task:");
+        System.out.println("   " + task.getFullStatus());
+        taskCount++;
+        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println(HORIZONTAL_LINE);
+    }
+
     public static void main(String[] args) {
         printWelcomeMessage();
         processUserCommands();
         /*Scanner scanner = new Scanner(System.in);
-        String input;*/
+        String input;
 
         while (true) {
             input = scanner.nextLine();
@@ -210,7 +219,7 @@ public class Reverie {
             }
         }
 
-        scanner.close();
+        scanner.close();*/
 
     }
 }
