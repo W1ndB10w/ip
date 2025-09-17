@@ -85,6 +85,15 @@ public class Reverie {
                 taskCount++;
                 System.out.println(" Now you have " + taskCount + " tasks in the list.");
                 System.out.println(HORIZONTAL_LINE);
+            } else if (input.toLowerCase().startsWith("event ")) {
+                String temp = input.substring(6);
+                String[] parts = temp.split(" /from | /to ");
+                tasks[taskCount] = new Event(parts[0], parts[1], parts[2]);
+                System.out.println(" Got it. I've added this task:");
+                System.out.println("   " + tasks[taskCount].getFullStatus());
+                taskCount++;
+                System.out.println(" Now you have " + taskCount + " tasks in the list.");
+                System.out.println(HORIZONTAL_LINE);
             } else {
                 tasks[taskCount] = new Task(input);
                 taskCount++;
