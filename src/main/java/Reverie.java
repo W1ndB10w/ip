@@ -71,6 +71,13 @@ public class Reverie {
         }
     }
 
+    private static void handleDefault(String input) {
+        tasks[taskCount] = new Task(input);
+        taskCount++;
+        System.out.println(" added: " + input);
+        System.out.println(HORIZONTAL_LINE);
+    }
+    
     private static void handleExit(Scanner scanner) {
         System.out.println(" Bye. Hope to see you again soon!");
         System.out.println(HORIZONTAL_LINE);
