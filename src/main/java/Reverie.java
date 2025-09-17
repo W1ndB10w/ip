@@ -68,6 +68,14 @@ public class Reverie {
                     System.out.println("   " + tasks[taskNumber].getFullStatus());
                     System.out.println(HORIZONTAL_LINE);
                 }
+            } else if (input.toLowerCase().startsWith("todo ")) {
+                String description = input.substring(5);
+                tasks[taskCount] = new Todo(description);
+                System.out.println(" Got it. I've added this task:");
+                System.out.println("   " + tasks[taskCount].getFullStatus());
+                taskCount++;
+                System.out.println(" Now you have " + taskCount + " tasks in the list.");
+                System.out.println(HORIZONTAL_LINE);
             } else {
                 tasks[taskCount] = new Task(input);
                 taskCount++;
