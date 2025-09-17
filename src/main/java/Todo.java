@@ -1,4 +1,10 @@
-package PACKAGE_NAME;
+public class Todo extends Task {
+    public Todo(String description) {
+        super(description);
+    }
 
-public class Todo {
+    @Override
+    public String getFullStatus() {
+        return "[T]" + super.getFullStatus();
+    }
 }

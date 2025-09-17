@@ -1,4 +1,2 @@
-package PACKAGE_NAME;
-
-public class Deadline {
+public class Deadline extends Task {
 }
