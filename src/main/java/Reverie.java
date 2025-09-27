@@ -66,8 +66,7 @@ public class Reverie {
                         handleEvent(input);
                         break;
                     default:
-                        handleDefault(input);
-                        break;
+                        throw new ReverieException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (ReverieException e) {
                 System.out.println(" Error: " + e.getMessage());
@@ -76,12 +75,12 @@ public class Reverie {
         }
     }
 
-    private static void handleDefault(String input) {
+    /*private static void handleDefault(String input) {
         tasks[taskCount] = new Task(input);
         taskCount++;
         System.out.println(" added: " + input);
         System.out.println(HORIZONTAL_LINE);
-    }
+    }*/
 
     private static void handleExit(Scanner scanner) {
         System.out.println(" Bye. Hope to see you again soon!");
@@ -103,9 +102,7 @@ public class Reverie {
 
     private static void handleMark(String input, boolean isMark) {
         if (taskCount == 0) {
-            System.out.println(" No tasks added yet!");
-            System.out.println(HORIZONTAL_LINE);
-            return;
+            throw new ReverieException("No tasks available to mark!")
         }
 
         int prefixLength = isMark ? "mark ".length() : "unmark ".length();
