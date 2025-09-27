@@ -114,6 +114,10 @@ public class Reverie {
         try {
             int taskNumber = Integer.parseInt(input.substring(prefixLength).trim()) - 1;
 
+            if (taskNumber < 0 || taskNumber >= taskCount) {
+                throw new ReverieException("Invalid task number! Please choose between 1 and " + taskCount);
+            }
+
             if (isMark) {
                 tasks[taskNumber].markAsDone();
                 System.out.println(" Nice! I've marked this task as done:");
@@ -141,7 +145,11 @@ public class Reverie {
         addTask(new Todo(description));
     }
 
-    private static void handleDeadline(String input) {
+    private static void handleDeadline(String input) throws ReverieException {
+        if (input.length() <= "deadline ".length()) {
+            throw new ReverieException("The description of a deadline cannot be empty! Format: deadline <description> /by <time>");
+        }
+
         String[] parts = input.substring("deadline ".length()).split(" /by ");
         addTask(new Deadline(parts[0], parts[1]));
     }
