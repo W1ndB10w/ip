@@ -112,7 +112,7 @@ public class Reverie {
         }
 
         try {
-            int taskNumber = Integer.parseInt(input.substring(prefixLength)) - 1;
+            int taskNumber = Integer.parseInt(input.substring(prefixLength).trim()) - 1;
 
             if (isMark) {
                 tasks[taskNumber].markAsDone();
@@ -128,8 +128,16 @@ public class Reverie {
         }
     }
 
-    private static void handleTodo(String input) {
-        String description = input.substring("todo ".length());
+    private static void handleTodo(String input) throws ReverieException {
+        if (input.length() <= "todo ".length()) {
+            throw new ReverieException("The description of a todo cannot be empty!");
+        }
+
+        String description = input.substring("todo ".length()).trim();
+        if (description.isEmpty()) {
+            throw new ReverieException("The description of a todo cannot be empty!");
+        }
+
         addTask(new Todo(description));
     }
 
