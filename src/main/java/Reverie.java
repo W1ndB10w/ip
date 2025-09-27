@@ -178,11 +178,25 @@ public class Reverie {
         String content = input.substring("event ".length()).trim();
         String[] parts = content.split(" /from | /to ");
 
+        if (parts.length < 3) {
+            throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
+        }
+
         String description = parts[0].trim();
         String from = parts[1].trim();
         String to = parts[2].trim();
-        //String[] parts = input.substring("event ".length()).split(" /from | /to ");
-        //addTask(new Event(parts[0], parts[1], parts[2]));
+
+        if (description.isEmpty()) {
+            throw new ReverieException("The description of an event cannot be empty!");
+        }
+        if (from.isEmpty()) {
+            throw new ReverieException("The start time of an event cannot be empty!");
+        }
+        if (to.isEmpty()) {
+            throw new ReverieException("The end time of an event cannot be empty!");
+        }
+
+        addTask(new Event(description, from, to));
     }
 
     private static void addTask(Task task) {
