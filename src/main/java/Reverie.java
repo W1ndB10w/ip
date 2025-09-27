@@ -100,28 +100,32 @@ public class Reverie {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    private static void handleMark(String input, boolean isMark) {
+    private static void handleMark(String input, boolean isMark) throws ReverieException {
         if (taskCount == 0) {
-            //throw new ReverieException("No tasks available to mark!");
+            throw new ReverieException("No tasks available to mark!");
         }
 
         int prefixLength = isMark ? "mark ".length() : "unmark ".length();
 
         if (input.length() <= prefixLength) {
-            //throw new ReverieException("Please specify a task number to " + (isMark ? "mark" : "unmark"));
+            throw new ReverieException("Please specify a task number to " + (isMark ? "mark" : "unmark"));
         }
 
-        int taskNumber = Integer.parseInt(input.substring(prefixLength)) - 1;
+        try {
+            int taskNumber = Integer.parseInt(input.substring(prefixLength)) - 1;
 
-        if (isMark) {
-            tasks[taskNumber].markAsDone();
-            System.out.println(" Nice! I've marked this task as done:");
-        } else {
-            tasks[taskNumber].markAsUndone();
-            System.out.println(" OK, I've marked this task as unfinished:");
+            if (isMark) {
+                tasks[taskNumber].markAsDone();
+                System.out.println(" Nice! I've marked this task as done:");
+            } else {
+                tasks[taskNumber].markAsUndone();
+                System.out.println(" OK, I've marked this task as unfinished:");
+            }
+            System.out.println("   " + tasks[taskNumber].getFullStatus());
+            System.out.println(HORIZONTAL_LINE);
+        } catch (NumberFormatException e) {
+            throw new ReverieException("Please enter a valid number after '" + (isMark ? "mark" : "unmark") + "'");
         }
-        System.out.println("   " + tasks[taskNumber].getFullStatus());
-        System.out.println(HORIZONTAL_LINE);
     }
 
     private static void handleTodo(String input) {
