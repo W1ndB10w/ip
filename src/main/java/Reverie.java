@@ -145,8 +145,8 @@ public class Reverie {
             throw new ReverieException("The description of a deadline cannot be empty!\nFormat: deadline <description> /by <time>");
         }
 
-        String content = input.substring("deadline ".length()).trim();
-        String[] parts = content.split(" /by ");
+        String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
+        String[] parts = content.split("\\s+/by\\s+", 2);
 
         if (parts.length < 2) {
             throw new ReverieException("Invalid deadline format!\nFormat: deadline <description> /by <time>");
