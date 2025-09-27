@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class ReverieException {
+public class ReverieException extends Exception {
+    public ReverieException(String message) {
+        super(message);
+    }
 }

@@ -45,28 +45,33 @@ public class Reverie {
                 break;
             }
 
-            switch (input.toLowerCase().split(" ")[0]) {
-                case "list":
-                    handleList();
-                    break;
-                case "mark":
-                    handleMark(input, true);
-                    break;
-                case "unmark":
-                    handleMark(input, false);
-                    break;
-                case "todo":
-                    handleTodo(input);
-                    break;
-                case "deadline":
-                    handleDeadline(input);
-                    break;
-                case "event":
-                    handleEvent(input);
-                    break;
-                default:
-                    handleDefault(input);
-                    break;
+            try {
+                switch (input.toLowerCase().split(" ")[0]) {
+                    case "list":
+                        handleList();
+                        break;
+                    case "mark":
+                        handleMark(input, true);
+                        break;
+                    case "unmark":
+                        handleMark(input, false);
+                        break;
+                    case "todo":
+                        handleTodo(input);
+                        break;
+                    case "deadline":
+                        handleDeadline(input);
+                        break;
+                    case "event":
+                        handleEvent(input);
+                        break;
+                    default:
+                        handleDefault(input);
+                        break;
+                }
+            } catch (ReverieException e) {
+                System.out.println(" Error: " + e.getMessage());
+                System.out.println(HORIZONTAL_LINE);
             }
         }
     }
