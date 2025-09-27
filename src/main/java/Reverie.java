@@ -157,14 +157,17 @@ public class Reverie {
             throw new ReverieException("Invalid deadline format!\nFormat: deadline <description> /by <time>");
         }
 
-        if (parts[0].trim().isEmpty()) {
+        String description = parts[0].trim();
+        String by = parts[1].trim();
+
+        if (description.isEmpty()) {
             throw new ReverieException("The description of a deadline cannot be empty!");
         }
-        if (parts[1].trim().isEmpty()) {
+        if (by.isEmpty()) {
             throw new ReverieException("The deadline time cannot be empty!");
         }
 
-        addTask(new Deadline(parts[0].trim(), parts[1].trim()));
+        addTask(new Deadline(description, by));
     }
 
     private static void handleEvent(String input) {
