@@ -170,7 +170,11 @@ public class Reverie {
         addTask(new Deadline(description, by));
     }
 
-    private static void handleEvent(String input) {
+    private static void handleEvent(String input) throws ReverieException {
+        if (input.length() <= "event ".length()) {
+            throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
+        }
+
         String[] parts = input.substring("event ".length()).split(" /from | /to ");
         addTask(new Event(parts[0], parts[1], parts[2]));
     }
