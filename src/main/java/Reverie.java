@@ -175,8 +175,14 @@ public class Reverie {
             throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
         }
 
-        String[] parts = input.substring("event ".length()).split(" /from | /to ");
-        addTask(new Event(parts[0], parts[1], parts[2]));
+        String content = input.substring("event ".length()).trim();
+        String[] parts = content.split(" /from | /to ");
+
+        String description = parts[0].trim();
+        String from = parts[1].trim();
+        String to = parts[2].trim();
+        //String[] parts = input.substring("event ".length()).split(" /from | /to ");
+        //addTask(new Event(parts[0], parts[1], parts[2]));
     }
 
     private static void addTask(Task task) {
