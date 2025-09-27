@@ -66,6 +66,9 @@ public class Reverie {
                     case "event":
                         handleEvent(input);
                         break;
+                    case "delete":
+                        handleDelete(input);
+                        break;
                     default:
                         throw new ReverieException("I'm sorry, but I don't know what that means :-(");
                 }
@@ -191,6 +194,10 @@ public class Reverie {
         }
 
         addTask(new Event(description, from, to));
+    }
+
+    private static void handleDelete(String input) throws ReverieException {
+        
     }
 
     private static void addTask(Task task) {
