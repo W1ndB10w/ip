@@ -46,7 +46,7 @@ public class Reverie {
             }
 
             try {
-                String command = input.toLowerCase().split(" ")[0];
+                String command = input.trim().toLowerCase().split("\\s+")[0];
                 switch (command) {
                     case "list":
                         handleList();
