@@ -88,7 +88,7 @@ public class Reverie {
         scanner.close();
     }
 
-    private static void handleList() {
+    private static void handleList() throws ReverieException {
         if (taskCount == 0) {
             System.out.println(" No tasks added yet!");
         } else {
@@ -102,10 +102,15 @@ public class Reverie {
 
     private static void handleMark(String input, boolean isMark) {
         if (taskCount == 0) {
-            throw new ReverieException("No tasks available to mark!")
+            //throw new ReverieException("No tasks available to mark!");
         }
 
         int prefixLength = isMark ? "mark ".length() : "unmark ".length();
+
+        if (input.length() <= prefixLength) {
+            //throw new ReverieException("Please specify a task number to " + (isMark ? "mark" : "unmark"));
+        }
+
         int taskNumber = Integer.parseInt(input.substring(prefixLength)) - 1;
 
         if (isMark) {
