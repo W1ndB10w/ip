@@ -132,7 +132,7 @@ public class Reverie {
             throw new ReverieException("The description of a todo cannot be empty!");
         }
 
-        String description = input.substring("todo ".length()).trim();
+        String description = input.replaceFirst("(?i)^todo\\s+", "").trim();
         if (description.isEmpty()) {
             throw new ReverieException("The description of a todo cannot be empty!");
         }
