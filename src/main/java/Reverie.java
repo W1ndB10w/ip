@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static ArrayList<Task> tasks = new ArrayList<>();
-    //private static int taskCount = 0;
 
     private static void printWelcomeMessage() {
         // Reverie picture
@@ -86,19 +85,19 @@ public class Reverie {
     }
 
     private static void handleList() throws ReverieException {
-        if (taskCount == 0) {
+        if (tasks.isEmpty()) {
             System.out.println(" No tasks added yet!");
         } else {
             System.out.println(" Here are the tasks in your list:");
-            for (int i = 0; i < taskCount; i++) {
-                System.out.println(" " + (i + 1) + "." + tasks[i].getFullStatus());
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
             }
         }
         System.out.println(HORIZONTAL_LINE);
     }
 
     private static void handleMark(String input, boolean isMark) throws ReverieException {
-        if (taskCount == 0) {
+        if (tasks.isEmpty()) {
             throw new ReverieException("No tasks available to mark!");
         }
 
@@ -111,18 +110,18 @@ public class Reverie {
         try {
             int taskNumber = Integer.parseInt(input.substring(prefixLength).trim()) - 1;
 
-            if (taskNumber < 0 || taskNumber >= taskCount) {
-                throw new ReverieException("Invalid task number! Please select between 1 and " + taskCount);
+            if (taskNumber < 0 || taskNumber >= tasks.size()) {
+                throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
             }
 
             if (isMark) {
-                tasks[taskNumber].markAsDone();
+                tasks.get(taskNumber).markAsDone();
                 System.out.println(" Nice! I've marked this task as done:");
             } else {
-                tasks[taskNumber].markAsUndone();
+                tasks.get(taskNumber).markAsUndone();
                 System.out.println(" OK, I've marked this task as unfinished:");
             }
-            System.out.println("   " + tasks[taskNumber].getFullStatus());
+            System.out.println("   " + tasks.get(taskNumber).getFullStatus());
             System.out.println(HORIZONTAL_LINE);
         } catch (NumberFormatException e) {
             throw new ReverieException("Please enter a valid number after '" + (isMark ? "mark" : "unmark") + "'");
@@ -225,11 +224,10 @@ public class Reverie {
     }
 
     private static void addTask(Task task) {
-        tasks[taskCount] = task;
+        tasks.add(task);
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + task.getFullStatus());
-        taskCount++;
-        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(HORIZONTAL_LINE);
     }
 
