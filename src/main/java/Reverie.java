@@ -40,13 +40,14 @@ public class Reverie {
             input = scanner.nextLine();
             System.out.println(HORIZONTAL_LINE);
 
-            if (input.equalsIgnoreCase("bye")) {
+            if (input.trim().equalsIgnoreCase("bye")) {
                 handleExit(scanner);
                 break;
             }
 
             try {
-                switch (input.toLowerCase().split(" ")[0]) {
+                String command = input.toLowerCase().split(" ")[0];
+                switch (command) {
                     case "list":
                         handleList();
                         break;
@@ -197,7 +198,7 @@ public class Reverie {
 
     private static void handleDelete(String input) throws ReverieException {
         if (tasks.isEmpty()) {
-            throw new ReverieException("No tasks available to delete!");
+            throw new ReverieException("No tasks available to delete! Add some tasks first.");
         }
 
         int prefixLength = "delete ".length();
