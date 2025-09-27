@@ -170,8 +170,8 @@ public class Reverie {
             throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
         }
 
-        String content = input.substring("event ".length()).trim();
-        String[] parts = content.split(" /from | /to ");
+        String content = input.replaceFirst("(?i)^event\\s+", "").trim();
+        String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
 
         if (parts.length < 3) {
             throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
