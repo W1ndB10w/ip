@@ -109,6 +109,7 @@ public class Reverie {
 
         try {
             int taskNumber = Integer.parseInt(numberPart) - 1;
+
             if (taskNumber < 0 || taskNumber >= tasks.size()) {
                 throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
             }
@@ -199,14 +200,13 @@ public class Reverie {
             throw new ReverieException("No tasks available to delete! Add some tasks first.");
         }
 
-        int prefixLength = "delete ".length();
-
-        if (input.length() <= prefixLength) {
+        String numberPart = input.replaceFirst("(?i)^delete\\s+", "").trim();
+        if (numberPart.isEmpty()) {
             throw new ReverieException("Please specify a task number to delete");
         }
 
         try {
-            int taskNumber = Integer.parseInt(input.substring(prefixLength).trim()) - 1;
+            int taskNumber = Integer.parseInt(numberPart) - 1;
 
             if (taskNumber < 0 || taskNumber >= tasks.size()) {
                 throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
