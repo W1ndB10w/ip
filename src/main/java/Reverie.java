@@ -197,7 +197,31 @@ public class Reverie {
     }
 
     private static void handleDelete(String input) throws ReverieException {
-        
+        if (tasks.isEmpty()) {
+            throw new ReverieException("No tasks available to delete!");
+        }
+
+        int prefixLength = "delete ".length();
+
+        if (input.length() <= prefixLength) {
+            throw new ReverieException("Please specify a task number to delete");
+        }
+
+        try {
+            int taskNumber = Integer.parseInt(input.substring(prefixLength).trim()) - 1;
+
+            if (taskNumber < 0 || taskNumber >= tasks.size()) {
+                throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
+            }
+
+            Task removedTask = tasks.remove(taskNumber);
+            System.out.println(" Noted. I've removed this task:");
+            System.out.println("   " + removedTask.getFullStatus());
+            System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println(HORIZONTAL_LINE);
+        } catch (NumberFormatException e) {
+            throw new ReverieException("Please enter a valid number after 'delete'");
+        }
     }
 
     private static void addTask(Task task) {
