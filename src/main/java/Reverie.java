@@ -1,9 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
-    private static Task[] tasks = new Task[100];
-    private static int taskCount = 0;
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     private static void printWelcomeMessage() {
         // Reverie picture
@@ -40,13 +40,14 @@ public class Reverie {
             input = scanner.nextLine();
             System.out.println(HORIZONTAL_LINE);
 
-            if (input.equalsIgnoreCase("bye")) {
+            if (input.trim().equalsIgnoreCase("bye")) {
                 handleExit(scanner);
                 break;
             }
 
             try {
-                switch (input.toLowerCase().split(" ")[0]) {
+                String command = input.trim().toLowerCase().split("\\s+")[0];
+                switch (command) {
                     case "list":
                         handleList();
                         break;
@@ -65,6 +66,9 @@ public class Reverie {
                     case "event":
                         handleEvent(input);
                         break;
+                    case "delete":
+                        handleDelete(input);
+                        break;
                     default:
                         throw new ReverieException("I'm sorry, but I don't know what that means :-(");
                 }
@@ -82,43 +86,42 @@ public class Reverie {
     }
 
     private static void handleList() throws ReverieException {
-        if (taskCount == 0) {
+        if (tasks.isEmpty()) {
             System.out.println(" No tasks added yet!");
         } else {
             System.out.println(" Here are the tasks in your list:");
-            for (int i = 0; i < taskCount; i++) {
-                System.out.println(" " + (i + 1) + "." + tasks[i].getFullStatus());
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
             }
         }
         System.out.println(HORIZONTAL_LINE);
     }
 
     private static void handleMark(String input, boolean isMark) throws ReverieException {
-        if (taskCount == 0) {
+        if (tasks.isEmpty()) {
             throw new ReverieException("No tasks available to mark!");
         }
 
-        int prefixLength = isMark ? "mark ".length() : "unmark ".length();
-
-        if (input.length() <= prefixLength) {
+        String numberPart = input.replaceFirst("(?i)^(mark|unmark)\\s+", "").trim();
+        if (numberPart.isEmpty()) {
             throw new ReverieException("Please specify a task number to " + (isMark ? "mark" : "unmark"));
         }
 
         try {
-            int taskNumber = Integer.parseInt(input.substring(prefixLength).trim()) - 1;
+            int taskNumber = Integer.parseInt(numberPart) - 1;
 
-            if (taskNumber < 0 || taskNumber >= taskCount) {
-                throw new ReverieException("Invalid task number! Please select between 1 and " + taskCount);
+            if (taskNumber < 0 || taskNumber >= tasks.size()) {
+                throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
             }
 
             if (isMark) {
-                tasks[taskNumber].markAsDone();
+                tasks.get(taskNumber).markAsDone();
                 System.out.println(" Nice! I've marked this task as done:");
             } else {
-                tasks[taskNumber].markAsUndone();
+                tasks.get(taskNumber).markAsUndone();
                 System.out.println(" OK, I've marked this task as unfinished:");
             }
-            System.out.println("   " + tasks[taskNumber].getFullStatus());
+            System.out.println("   " + tasks.get(taskNumber).getFullStatus());
             System.out.println(HORIZONTAL_LINE);
         } catch (NumberFormatException e) {
             throw new ReverieException("Please enter a valid number after '" + (isMark ? "mark" : "unmark") + "'");
@@ -130,7 +133,7 @@ public class Reverie {
             throw new ReverieException("The description of a todo cannot be empty!");
         }
 
-        String description = input.substring("todo ".length()).trim();
+        String description = input.replaceFirst("(?i)^todo\\s+", "").trim();
         if (description.isEmpty()) {
             throw new ReverieException("The description of a todo cannot be empty!");
         }
@@ -143,8 +146,8 @@ public class Reverie {
             throw new ReverieException("The description of a deadline cannot be empty!\nFormat: deadline <description> /by <time>");
         }
 
-        String content = input.substring("deadline ".length()).trim();
-        String[] parts = content.split(" /by ");
+        String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
+        String[] parts = content.split("\\s+/by\\s+", 2);
 
         if (parts.length < 2) {
             throw new ReverieException("Invalid deadline format!\nFormat: deadline <description> /by <time>");
@@ -168,8 +171,8 @@ public class Reverie {
             throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
         }
 
-        String content = input.substring("event ".length()).trim();
-        String[] parts = content.split(" /from | /to ");
+        String content = input.replaceFirst("(?i)^event\\s+", "").trim();
+        String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
 
         if (parts.length < 3) {
             throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
@@ -192,12 +195,38 @@ public class Reverie {
         addTask(new Event(description, from, to));
     }
 
+    private static void handleDelete(String input) throws ReverieException {
+        if (tasks.isEmpty()) {
+            throw new ReverieException("No tasks available to delete! Add some tasks first.");
+        }
+
+        String numberPart = input.replaceFirst("(?i)^delete\\s+", "").trim();
+        if (numberPart.isEmpty()) {
+            throw new ReverieException("Please specify a task number to delete");
+        }
+
+        try {
+            int taskNumber = Integer.parseInt(numberPart) - 1;
+
+            if (taskNumber < 0 || taskNumber >= tasks.size()) {
+                throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
+            }
+
+            Task removedTask = tasks.remove(taskNumber);
+            System.out.println(" Noted. I've removed this task:");
+            System.out.println("   " + removedTask.getFullStatus());
+            System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println(HORIZONTAL_LINE);
+        } catch (NumberFormatException e) {
+            throw new ReverieException("Please enter a valid number after 'delete'");
+        }
+    }
+
     private static void addTask(Task task) {
-        tasks[taskCount] = task;
+        tasks.add(task);
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + task.getFullStatus());
-        taskCount++;
-        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(HORIZONTAL_LINE);
     }
 
