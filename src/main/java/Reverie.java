@@ -49,6 +49,14 @@ public class Reverie {
             System.out.println(HORIZONTAL_LINE);
         }
     }
+
+    private static void saveTasks() {
+        try {
+            storage.save(tasks, taskCount);
+        } catch (ReverieException e) {
+            System.out.println(" Error saving tasks: " + e.getMessage());
+        }
+    }
     
     private static void processUserCommands() {
         Scanner scanner = new Scanner(System.in);
