@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static ArrayList<Task> tasks = new ArrayList<>();
+    //private static int taskCount = 0;
+    private static Storage storage = new Storage();
 
     private static void printWelcomeMessage() {
         // Reverie picture
@@ -30,6 +32,29 @@ public class Reverie {
                 "██║  ██║███████╗ ╚████╔╝ ███████╗██║  ██║██║███████╗",
                 "╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝"
         };
+    }
+
+    private static void loadTasks() {
+        try {
+            ArrayList<Task> loadedTasks = storage.load();
+
+            tasks.addAll(loadedTasks);
+            if (!tasks.isEmpty()) {
+                System.out.println(" Loaded " + tasks.size() + " task(s) from file.");
+                System.out.println(HORIZONTAL_LINE);
+            }
+        } catch (ReverieException e) {
+            System.out.println(" Error loading tasks: " + e.getMessage());
+            System.out.println(HORIZONTAL_LINE);
+        }
+    }
+
+    private static void saveTasks() {
+        try {
+            storage.save(tasks);
+        } catch (ReverieException e) {
+            System.out.println(" Error saving tasks: " + e.getMessage());
+        }
     }
 
     private static void processUserCommands() {
@@ -123,6 +148,7 @@ public class Reverie {
             }
             System.out.println("   " + tasks.get(taskNumber).getFullStatus());
             System.out.println(HORIZONTAL_LINE);
+            saveTasks();
         } catch (NumberFormatException e) {
             throw new ReverieException("Please enter a valid number after '" + (isMark ? "mark" : "unmark") + "'");
         }
@@ -228,10 +254,12 @@ public class Reverie {
         System.out.println("   " + task.getFullStatus());
         System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(HORIZONTAL_LINE);
+        saveTasks();
     }
 
     public static void main(String[] args) {
         printWelcomeMessage();
+        loadTasks();
         processUserCommands();
     }
 }
