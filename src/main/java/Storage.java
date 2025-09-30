@@ -59,4 +59,20 @@ public class Storage {
 
         return loadedTasks;
     }
+
+    private String taskToFileFormat(Task task) {
+        String isDone = task.isDone ? "1" : "0";
+
+        if (task instanceof Todo) {
+            return "T | " + isDone + " | " + task.description;
+        } else if (task instanceof Deadline) {
+            Deadline deadline = (Deadline) task;
+            return "D | " + isDone + " | " + task.description + " | " + deadline.by;
+        } else if (task instanceof Event) {
+            Event event = (Event) task;
+            return "E | " + isDone + " | " + task.description + " | " + event.from + " | " + event.to;
+        }
+
+        return "";
+    }
 }
