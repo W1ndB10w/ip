@@ -15,7 +15,10 @@ public class Storage {
     private void createDataDirectory() {
         File directory = new File("./data");
         if (!directory.exists()) {
-            directory.mkdirs();
+            boolean result = directory.mkdirs(); // Capture the result
+            if (!result) {
+                System.out.println(" Warning: Could not create data directory");
+            }
         }
     }
 
