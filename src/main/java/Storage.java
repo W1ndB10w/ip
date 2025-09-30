@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Storage {
     private static final String FILE_PATH = "./data/reverie.txt";
@@ -26,5 +29,34 @@ public class Storage {
         } catch (IOException e) {
             throw new ReverieException("Error saving tasks to file: " + e.getMessage());
         }
+    }
+
+    public ArrayList<Task> load() throws ReverieException {
+        ArrayList<Task> loadedTasks = new ArrayList<>();
+        File file = new File(FILE_PATH);
+
+        if (!file.exists()) {
+            return loadedTasks; // Return empty list if file doesn't exist
+        }
+
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                try {
+                    Task task = parseTaskFromFile(line);
+                    if (task != null) {
+                        loadedTasks.add(task);
+                    }
+                } catch (Exception e) {
+                    System.out.println(" Warning: Skipping corrupted line: " + line);
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            throw new ReverieException("Error reading file: " + e.getMessage());
+        }
+
+        return loadedTasks;
     }
 }
