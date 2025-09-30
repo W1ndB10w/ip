@@ -4,6 +4,7 @@ public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static Task[] tasks = new Task[100];
     private static int taskCount = 0;
+    private static Storage storage = new Storage();
 
     private static void printWelcomeMessage() {
         // Reverie picture
