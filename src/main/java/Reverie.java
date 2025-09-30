@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
@@ -57,7 +58,7 @@ public class Reverie {
             System.out.println(" Error saving tasks: " + e.getMessage());
         }
     }
-    
+
     private static void processUserCommands() {
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -146,6 +147,7 @@ public class Reverie {
             }
             System.out.println("   " + tasks[taskNumber].getFullStatus());
             System.out.println(HORIZONTAL_LINE);
+            saveTasks();
         } catch (NumberFormatException e) {
             throw new ReverieException("Please enter a valid number after '" + (isMark ? "mark" : "unmark") + "'");
         }
@@ -225,10 +227,12 @@ public class Reverie {
         taskCount++;
         System.out.println(" Now you have " + taskCount + " tasks in the list.");
         System.out.println(HORIZONTAL_LINE);
+        saveTasks();
     }
 
     public static void main(String[] args) {
         printWelcomeMessage();
+        loadTasks();
         processUserCommands();
     }
 }
