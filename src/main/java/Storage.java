@@ -23,15 +23,6 @@ public class Storage {
     }
 
     public void save(ArrayList<Task> tasks) throws ReverieException {
-        /*try {
-            FileWriter writer = new FileWriter(FILE_PATH);
-            for (int i = 0; i < taskCount; i++) {
-                writer.write(taskToFileFormat(tasks[i]) + System.lineSeparator());
-            }
-            writer.close();
-        } catch (IOException e) {
-            throw new ReverieException("Error saving tasks to file: " + e.getMessage());
-        }*/
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
             for (Task task : tasks) {

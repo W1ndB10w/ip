@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
-    private static ArrayList<Task> tasks = new ArrayList<>();
-    private static Storage storage = new Storage();
+    private static final ArrayList<Task> tasks = new ArrayList<>();
+    private static final Storage storage = new Storage();
 
     private static void printWelcomeMessage() {
         // Reverie picture
