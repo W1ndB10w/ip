@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Reverie {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static ArrayList<Task> tasks = new ArrayList<>();
-    //private static int taskCount = 0;
     private static Storage storage = new Storage();
 
     private static void printWelcomeMessage() {
@@ -168,16 +167,7 @@ public class Reverie {
     }
 
     private static void handleDeadline(String input) throws ReverieException {
-        if (input.length() <= "deadline ".length()) {
-            throw new ReverieException("The description of a deadline cannot be empty!\nFormat: deadline <description> /by <time>");
-        }
-
-        String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
-        String[] parts = content.split("\\s+/by\\s+", 2);
-
-        if (parts.length < 2) {
-            throw new ReverieException("Invalid deadline format!\nFormat: deadline <description> /by <time>");
-        }
+        String[] parts = getDeadlineParts(input);
 
         String description = parts[0].trim();
         String by = parts[1].trim();
@@ -192,17 +182,22 @@ public class Reverie {
         addTask(new Deadline(description, by));
     }
 
+    private static String[] getDeadlineParts(String input) throws ReverieException {
+        if (input.length() <= "deadline ".length()) {
+            throw new ReverieException("The description of a deadline cannot be empty!\nFormat: deadline <description> /by <time>");
+        }
+
+        String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
+        String[] parts = content.split("\\s+/by\\s+", 2);
+
+        if (parts.length < 2) {
+            throw new ReverieException("Invalid deadline format!\nFormat: deadline <description> /by <time>");
+        }
+        return parts;
+    }
+
     private static void handleEvent(String input) throws ReverieException {
-        if (input.length() <= "event ".length()) {
-            throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
-        }
-
-        String content = input.replaceFirst("(?i)^event\\s+", "").trim();
-        String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
-
-        if (parts.length < 3) {
-            throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
-        }
+        String[] parts = getEventParts(input);
 
         String description = parts[0].trim();
         String from = parts[1].trim();
@@ -219,6 +214,20 @@ public class Reverie {
         }
 
         addTask(new Event(description, from, to));
+    }
+
+    private static String[] getEventParts(String input) throws ReverieException {
+        if (input.length() <= "event ".length()) {
+            throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
+        }
+
+        String content = input.replaceFirst("(?i)^event\\s+", "").trim();
+        String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
+
+        if (parts.length < 3) {
+            throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
+        }
+        return parts;
     }
 
     private static void handleDelete(String input) throws ReverieException {
