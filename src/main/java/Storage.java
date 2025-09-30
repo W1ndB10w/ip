@@ -75,4 +75,50 @@ public class Storage {
 
         return "";
     }
+
+    private Task parseTaskFromFile(String line) throws ReverieException {
+        String[] parts = line.split(" \\| ");
+
+        if (parts.length < 3) {
+            throw new ReverieException("Invalid file format");
+        }
+
+        String taskType = parts[0].trim();
+        boolean isDone = parts[1].trim().equals("1");
+        String description = parts[2].trim();
+
+        Task task = null;
+
+        switch (taskType) {
+            case "T":
+                if (parts.length != 3) {
+                    throw new ReverieException("Invalid Todo format");
+                }
+                task = new Todo(description);
+                break;
+            case "D":
+                if (parts.length != 4) {
+                    throw new ReverieException("Invalid Deadline format");
+                }
+                String by = parts[3].trim();
+                task = new Deadline(description, by);
+                break;
+            case "E":
+                if (parts.length != 5) {
+                    throw new ReverieException("Invalid Event format");
+                }
+                String from = parts[3].trim();
+                String to = parts[4].trim();
+                task = new Event(description, from, to);
+                break;
+            default:
+                throw new ReverieException("Unknown task type: " + taskType);
+        }
+
+        if (task != null && isDone) {
+            task.markAsDone();
+        }
+
+        return task;
+    }
 }
