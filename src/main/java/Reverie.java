@@ -252,6 +252,7 @@ public class Reverie {
             System.out.println("   " + removedTask.getFullStatus());
             System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
             System.out.println(HORIZONTAL_LINE);
+            saveTasks();
         } catch (NumberFormatException e) {
             throw new ReverieException("Please enter a valid number after 'delete'");
         }
