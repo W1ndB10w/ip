@@ -68,11 +68,9 @@ public class Storage {
 
         if (task instanceof Todo) {
             return "T | " + isDone + " | " + task.description;
-        } else if (task instanceof Deadline) {
-            Deadline deadline = (Deadline) task;
+        } else if (task instanceof Deadline deadline) {
             return "D | " + isDone + " | " + task.description + " | " + deadline.by;
-        } else if (task instanceof Event) {
-            Event event = (Event) task;
+        } else if (task instanceof Event event) {
             return "E | " + isDone + " | " + task.description + " | " + event.from + " | " + event.to;
         }
 
@@ -90,7 +88,7 @@ public class Storage {
         boolean isDone = parts[1].trim().equals("1");
         String description = parts[2].trim();
 
-        Task task = null;
+        Task task;
 
         switch (taskType) {
             case "T":
@@ -118,7 +116,7 @@ public class Storage {
                 throw new ReverieException("Unknown task type: " + taskType);
         }
 
-        if (task != null && isDone) {
+        if (isDone) {
             task.markAsDone();
         }
 
