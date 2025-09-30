@@ -33,6 +33,23 @@ public class Reverie {
         };
     }
 
+    private static void loadTasks() {
+        try {
+            ArrayList<Task> loadedTasks = storage.load();
+            for (Task task : loadedTasks) {
+                tasks[taskCount] = task;
+                taskCount++;
+            }
+            if (taskCount > 0) {
+                System.out.println(" Loaded " + taskCount + " task(s) from file.");
+                System.out.println(HORIZONTAL_LINE);
+            }
+        } catch (ReverieException e) {
+            System.out.println(" Error loading tasks: " + e.getMessage());
+            System.out.println(HORIZONTAL_LINE);
+        }
+    }
+    
     private static void processUserCommands() {
         Scanner scanner = new Scanner(System.in);
         String input;
