@@ -40,18 +40,20 @@ public class Parser {
 
     private static Task parseDeadline(String input) throws ReverieException {
         if (input.length() <= "deadline ".length()) {
-            throw new ReverieException("The description of a deadline cannot be empty!\n" +
-                    "Format: deadline <description> /by <time>\n" +
-                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
+            throw new ReverieException("""
+                    The description of a deadline cannot be empty!
+                    Format: deadline <description> /by <time>
+                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
         }
 
         String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
         String[] parts = content.split("\\s+/by\\s+", 2);
 
         if (parts.length < 2) {
-            throw new ReverieException("Invalid deadline format!\n" +
-                    "Format: deadline <description> /by <time>\n" +
-                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
+            throw new ReverieException("""
+                    Invalid deadline format!
+                    Format: deadline <description> /by <time>
+                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
         }
 
         String description = parts[0].trim();
@@ -89,18 +91,20 @@ public class Parser {
 
     private static String[] getEventParts(String input) throws ReverieException {
         if (input.length() <= "event ".length()) {
-            throw new ReverieException("The description of an event cannot be empty!\n" +
-                    "Format: event <description> /from <start> /to <end>\n" +
-                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
+            throw new ReverieException("""
+                    The description of an event cannot be empty!
+                    Format: event <description> /from <start> /to <end>
+                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
         }
 
         String content = input.replaceFirst("(?i)^event\\s+", "").trim();
         String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
 
         if (parts.length < 3) {
-            throw new ReverieException("Invalid event format!\n" +
-                    "Format: event <description> /from <start> /to <end>\n" +
-                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
+            throw new ReverieException("""
+                    Invalid event format!
+                    Format: event <description> /from <start> /to <end>
+                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
         }
         return parts;
     }
