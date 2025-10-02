@@ -31,4 +31,8 @@ public class Parser {
                 throw new ReverieException("I'm sorry, but I don't know what that means :-(");
         }
     }
+
+    private static Task parseTodo(String input) throws ReverieException {
+        
+    }
 }
