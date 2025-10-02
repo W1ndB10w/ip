@@ -86,7 +86,14 @@ public class Ui {
     }
 
     public void showFoundTasks(TaskList tasks) throws ReverieException {
-        
+        if (tasks.isEmpty()) {
+            System.out.println(" No matching tasks found!");
+        } else {
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
+            }
+        }
     }
 
     public void showLoadedTasks(int count) {
