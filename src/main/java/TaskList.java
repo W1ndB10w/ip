@@ -41,7 +41,10 @@ public class TaskList {
         return new ArrayList<>(tasks);
     }
 
-    public TaskList findTasks(String keyword) {
+    public ArrayList<Integer> findTaskIndices(String keyword) {
+        
+    }
+    /* public TaskList findTasks(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         String lowerKeyword = keyword.toLowerCase();
 
@@ -52,5 +55,5 @@ public class TaskList {
         }
 
         return new TaskList(matchingTasks);
-    }
+    } */
 }
