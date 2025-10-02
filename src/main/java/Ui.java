@@ -85,6 +85,10 @@ public class Ui {
         }
     }
 
+    public void showFoundTasks(TaskList tasks) throws ReverieException {
+        
+    }
+
     public void showLoadedTasks(int count) {
         if (count > 0) {
             showLine();
