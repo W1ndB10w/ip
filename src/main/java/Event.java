@@ -11,7 +11,7 @@ public class Event extends Task {
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
-    public Event(String description, String from, String to) {
+    public Event(String description, String from, String to) throws ReverieException {
         super(description);
         this.from = from;
         this.to = to;
@@ -19,11 +19,11 @@ public class Event extends Task {
         this.toDate = parseDate(to);
     }
 
-    private LocalDate parseDate(String dateString) {
+    private LocalDate parseDate(String dateString) throws ReverieException {
         try {
             return LocalDate.parse(dateString, INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            return null;
+            throw new ReverieException("Invalid date format. Please use yyyy-MM-dd (e.g., 2019-12-02)");
         }
     }
 
