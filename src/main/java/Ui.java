@@ -43,5 +43,13 @@ public class Ui {
         return scanner.nextLine();
     }
 
+    public void showLoadingError() {
+        System.out.println(" Error loading tasks from file. Starting with empty task list.");
+        showLine();
+    }
+
+    public void showError(String message) {
+        System.out.println(" Error: " + message);
+    }
 
 }
