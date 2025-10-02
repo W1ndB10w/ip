@@ -1,3 +1,9 @@
+package reverie.parser;
+
+import reverie.command.*;
+import reverie.exception.ReverieException;
+import reverie.task.*;
+
 public class Parser {
     public static Command parse(String fullCommand) throws ReverieException {
         String trimmedCommand = fullCommand.trim();
