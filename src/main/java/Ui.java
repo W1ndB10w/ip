@@ -112,7 +112,15 @@ public class Ui {
     }
 
     public void showSchedule(TaskList tasks, ArrayList<Integer> matchingIndices, LocalDate date) throws ReverieException {
-        
+        String formattedDate = date.format(OUTPUT_FORMAT);
+        if (matchingIndices.isEmpty()) {
+            System.out.println(" No tasks scheduled for " + formattedDate + "!");
+        } else {
+            System.out.println(" Here are the tasks scheduled for " + formattedDate + ":");
+            for (int index : matchingIndices) {
+                System.out.println(" " + (index + 1) + "." + tasks.get(index).getFullStatus());
+            }
+        }
     }
 
     public void showLoadedTasks(int count) {
