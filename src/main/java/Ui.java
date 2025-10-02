@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Ui {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
@@ -106,7 +107,7 @@ public class Ui {
             }
         }
     }
-    
+
     public void showLoadedTasks(int count) {
         if (count > 0) {
             showLine();
