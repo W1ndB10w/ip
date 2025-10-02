@@ -58,4 +58,10 @@ public class Ui {
         System.out.println(" Now you have " + taskCount + " tasks in the list.");
     }
 
+    public void showTaskDeleted(Task task, int taskCount) {
+        System.out.println(" Noted. I've removed this task:");
+        System.out.println("   " + task.getFullStatus());
+        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+    }
+    
 }
