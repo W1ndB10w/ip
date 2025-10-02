@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Storage {
-    private static final String FILE_PATH = "./data/reverie.txt";
+    /* private static final String FILE_PATH = "./data/reverie.txt";
     private static final String DATA_DIRECTORY = "./data";
     private static final String DELIMITER = " \\| ";
     private static final String DONE_MARKER = "1";
@@ -144,5 +144,5 @@ public class Storage {
             throw new ReverieException("Invalid Event format");
         }
         return new Event(description, parts[3].trim(), parts[4].trim());
-    }
+    } */
 }
