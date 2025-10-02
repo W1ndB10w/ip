@@ -18,6 +18,14 @@ public class Event extends Task {
         this.toDate = parseDate(to);
     }
 
+    private LocalDate parseDate(String dateString) {
+        try {
+            return LocalDate.parse(dateString, INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+    
     @Override
     public String getFullStatus() {
         return "[E]" + super.getFullStatus() + " (from: " + from + " to: " + to + ")";
