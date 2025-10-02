@@ -52,4 +52,10 @@ public class Ui {
         System.out.println(" Error: " + message);
     }
 
+    public void showTaskAdded(Task task, int taskCount) {
+        System.out.println(" Got it. I've added this task:");
+        System.out.println("   " + task.getFullStatus());
+        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+    }
+
 }
