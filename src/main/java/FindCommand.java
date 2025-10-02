@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class FindCommand extends Command {
     private final String keyword;
 
@@ -11,7 +13,7 @@ public class FindCommand extends Command {
             throw new ReverieException("Please specify a keyword to search for");
         }
 
-        TaskList matchingTasks = tasks.findTasks(keyword);
-        ui.showFoundTasks(matchingTasks);
+        ArrayList<Integer> matchingIndices = tasks.findTaskIndices(keyword);
+        ui.showFoundTasks(tasks, matchingIndices);
     }
 }
