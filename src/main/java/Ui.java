@@ -39,5 +39,9 @@ public class Ui {
         showLine();
     }
 
+    public String readCommand() {
+        return scanner.nextLine();
+    }
+
 
 }
