@@ -14,4 +14,11 @@ public class TaskList {
     public void add(Task task) {
         tasks.add(task);
     }
+
+    public Task delete(int index) throws ReverieException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
+        }
+        return tasks.remove(index);
+    }
 }
