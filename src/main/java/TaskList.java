@@ -42,7 +42,16 @@ public class TaskList {
     }
 
     public ArrayList<Integer> findTaskIndices(String keyword) {
-        
+        ArrayList<Integer> matchingIndices = new ArrayList<>();
+        String lowerKeyword = keyword.toLowerCase();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).description.toLowerCase().contains(lowerKeyword)) {
+                matchingIndices.add(i);
+            }
+        }
+
+        return matchingIndices;
     }
     /* public TaskList findTasks(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
