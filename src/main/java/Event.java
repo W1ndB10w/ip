@@ -33,14 +33,6 @@ public class Event extends Task {
         return "[E]" + super.getFullStatus() + " (from: " + fromString + " to: " + toString + ")";
     }
 
-    public String getFromDateString() {
-        return from;
-    }
-
-    public String getToDateString() {
-        return to;
-    }
-
     public LocalDate getFromDate() {
         return fromDate;
     }
