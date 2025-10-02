@@ -2,9 +2,9 @@
 // import java.util.ArrayList;
 
 public class Reverie {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     public Reverie(String filePath) {
         ui = new Ui();
