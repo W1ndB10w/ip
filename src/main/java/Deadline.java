@@ -9,17 +9,17 @@ public class Deadline extends Task {
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws ReverieException {
         super(description);
         this.by = by;
         this.byDate = parseDate(by);
     }
 
-    private LocalDate parseDate(String dateString) {
+    private LocalDate parseDate(String dateString) throws ReverieException {
         try {
             return LocalDate.parse(dateString, INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            return null;
+            throw new ReverieException("Invalid date format. Please use yyyy-MM-dd (e.g., 2019-12-02)");
         }
     }
 
