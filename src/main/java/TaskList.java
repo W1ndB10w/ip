@@ -40,4 +40,8 @@ public class TaskList {
     public ArrayList<Task> getAllTasks() {
         return new ArrayList<>(tasks);
     }
+
+    public TaskList findTasks(String keyword) {
+        
+    }
 }
