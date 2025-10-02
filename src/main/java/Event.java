@@ -32,4 +32,20 @@ public class Event extends Task {
         String toString = toDate != null ? toDate.format(OUTPUT_FORMAT) : to;
         return "[E]" + super.getFullStatus() + " (from: " + fromString + " to: " + toString + ")";
     }
+
+    public String getFromDateString() {
+        return from;
+    }
+
+    public String getToDateString() {
+        return to;
+    }
+
+    public LocalDate getFromDate() {
+        return fromDate;
+    }
+
+    public LocalDate getToDate() {
+        return toDate;
+    }
 }
