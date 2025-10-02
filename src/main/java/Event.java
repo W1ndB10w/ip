@@ -25,9 +25,11 @@ public class Event extends Task {
             return null;
         }
     }
-    
+
     @Override
     public String getFullStatus() {
-        return "[E]" + super.getFullStatus() + " (from: " + from + " to: " + to + ")";
+        String fromString = fromDate != null ? fromDate.format(OUTPUT_FORMAT) : from;
+        String toString = toDate != null ? toDate.format(OUTPUT_FORMAT) : to;
+        return "[E]" + super.getFullStatus() + " (from: " + fromString + " to: " + toString + ")";
     }
 }
