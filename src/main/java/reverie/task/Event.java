@@ -29,12 +29,12 @@ public class Event extends Task {
     public String getToString() {
         return to;
     }
-    
-    public LocalDate getFrom() {
+
+    public LocalDate getFromDate() {
         return fromDate;
     }
 
-    public LocalDate getTo() {
+    public LocalDate getToDate() {
         return toDate;
     }
 
@@ -51,13 +51,5 @@ public class Event extends Task {
         String fromString = fromDate != null ? fromDate.format(OUTPUT_FORMAT) : from;
         String toString = toDate != null ? toDate.format(OUTPUT_FORMAT) : to;
         return "[E]" + super.getFullStatus() + " (from: " + fromString + " to: " + toString + ")";
-    }
-
-    public LocalDate getFromDate() {
-        return fromDate;
-    }
-
-    public LocalDate getToDate() {
-        return toDate;
     }
 }
