@@ -17,6 +17,29 @@ public class Reverie {
             tasks = new TaskList();
         }
     }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (ReverieException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                if (!isExit) {
+                    ui.showLine();
+                }
+            }
+        }
+
+        ui.close();
+    }
     /* private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final ArrayList<Task> tasks = new ArrayList<>();
     private static final Storage storage = new Storage();
