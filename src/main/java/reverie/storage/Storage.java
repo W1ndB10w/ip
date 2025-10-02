@@ -73,7 +73,7 @@ public class Storage {
     }
 
     private String taskToFileFormat(Task task) {
-        String isDone = task.isDone ? DONE_MARKER : "0";
+        String isDone = task.isDone() ? DONE_MARKER : "0";
 
         if (task instanceof Todo) {
             return formatTodo(task, isDone);
@@ -86,15 +86,15 @@ public class Storage {
     }
 
     private String formatTodo(Task task, String isDone) {
-        return "T | " + isDone + " | " + task.description;
+        return "T | " + isDone + " | " + task.getDescription();
     }
 
     private String formatDeadline(Deadline deadline, String isDone) {
-        return "D | " + isDone + " | " + deadline.description + " | " + deadline.by;
+        return "D | " + isDone + " | " + deadline.getDescription() + " | " + deadline.by;
     }
 
     private String formatEvent(Event event, String isDone) {
-        return "E | " + isDone + " | " + event.description + " | " + event.from + " | " + event.to;
+        return "E | " + isDone + " | " + event.getDescription() + " | " + event.from + " | " + event.to;
     }
 
     private Task parseTaskFromFile(String line) throws ReverieException {
