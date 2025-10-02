@@ -1,8 +1,9 @@
-import java.util.Scanner;
-import java.util.ArrayList;
+// import java.util.Scanner;
+// import java.util.ArrayList;
 
 public class Reverie {
-    private static final String HORIZONTAL_LINE = "____________________________________________________________";
+    
+    /* private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final ArrayList<Task> tasks = new ArrayList<>();
     private static final Storage storage = new Storage();
 
@@ -271,5 +272,5 @@ public class Reverie {
         printWelcomeMessage();
         loadTasks();
         processUserCommands();
-    }
+    } */
 }
