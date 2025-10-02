@@ -10,6 +10,14 @@ public class Deadline extends Task {
         this.byDate = parseDate(by);
     }
 
+    private LocalDate parseDate(String dateString) {
+        try {
+            return LocalDate.parse(dateString, INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+    
     @Override
     public String getFullStatus() {
         return "[D]" + super.getFullStatus() + " (by: " + by + ")";
