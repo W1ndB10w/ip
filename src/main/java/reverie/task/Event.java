@@ -22,6 +22,14 @@ public class Event extends Task {
         this.toDate = parseDate(to);
     }
 
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    public LocalDate getTo() {
+        return to;
+    }
+    
     private LocalDate parseDate(String dateString) throws ReverieException {
         try {
             return LocalDate.parse(dateString, INPUT_FORMAT);
