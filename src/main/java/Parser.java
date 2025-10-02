@@ -19,6 +19,7 @@ public class Parser {
             case "deadline" -> new AddCommand(parseDeadline(trimmedCommand));
             case "event" -> new AddCommand(parseEvent(trimmedCommand));
             case "delete" -> new DeleteCommand(arguments);
+            case "find" -> new FindCommand(arguments);
             default -> throw new ReverieException("I'm sorry, but I don't know what that means :-(");
         };
     }
