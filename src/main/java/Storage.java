@@ -6,6 +6,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Storage {
+    private final String filePath;
+    private static final String DELIMITER = " \\| ";
+    private static final String DONE_MARKER = "1";
     /* private static final String FILE_PATH = "./data/reverie.txt";
     private static final String DATA_DIRECTORY = "./data";
     private static final String DELIMITER = " \\| ";
