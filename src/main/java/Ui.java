@@ -63,5 +63,10 @@ public class Ui {
         System.out.println("   " + task.getFullStatus());
         System.out.println(" Now you have " + taskCount + " tasks in the list.");
     }
-    
+
+    public void showTaskMarked(Task task) {
+        System.out.println(" Nice! I've marked this task as done:");
+        System.out.println("   " + task.getFullStatus());
+    }
+
 }
