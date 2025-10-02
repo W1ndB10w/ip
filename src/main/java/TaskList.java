@@ -21,4 +21,11 @@ public class TaskList {
         }
         return tasks.remove(index);
     }
+
+    public Task get(int index) throws ReverieException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new ReverieException("Invalid task number! Please select between 1 and " + tasks.size());
+        }
+        return tasks.get(index);
+    }
 }
