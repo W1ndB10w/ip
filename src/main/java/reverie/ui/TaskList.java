@@ -1,3 +1,7 @@
+package reverie.ui;
+
+import reverie.exception.ReverieException;
+import reverie.task.Task;
 import java.util.ArrayList;
 
 public class TaskList {
