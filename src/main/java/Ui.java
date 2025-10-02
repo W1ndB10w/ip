@@ -74,4 +74,14 @@ public class Ui {
         System.out.println("   " + task.getFullStatus());
     }
 
+    public void showTaskList(TaskList tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println(" No tasks added yet!");
+        } else {
+            System.out.println(" Here are the tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
+            }
+        }
+    }
 }
