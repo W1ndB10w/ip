@@ -19,7 +19,7 @@ public class Deadline extends Task {
     }
 
     public LocalDate getBy() {
-        return by;
+        return byDate;
     }
 
     private LocalDate parseDate(String dateString) throws ReverieException {
