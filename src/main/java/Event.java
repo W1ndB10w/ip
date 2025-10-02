@@ -14,6 +14,8 @@ public class Event extends Task {
         super(description);
         this.from = from;
         this.to = to;
+        this.fromDate = parseDate(from);
+        this.toDate = parseDate(to);
     }
 
     @Override
