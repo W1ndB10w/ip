@@ -5,6 +5,18 @@ public class Reverie {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
+    public Reverie(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+            ui.showLoadedTasks(tasks.size());
+        } catch (ReverieException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
     /* private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final ArrayList<Task> tasks = new ArrayList<>();
     private static final Storage storage = new Storage();
