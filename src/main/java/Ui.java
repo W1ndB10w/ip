@@ -69,4 +69,9 @@ public class Ui {
         System.out.println("   " + task.getFullStatus());
     }
 
+    public void showTaskUnmarked(Task task) {
+        System.out.println(" OK, I've marked this task as unfinished:");
+        System.out.println("   " + task.getFullStatus());
+    }
+
 }
