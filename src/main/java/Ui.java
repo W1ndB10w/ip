@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Ui {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
@@ -81,6 +82,28 @@ public class Ui {
             System.out.println(" Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
+            }
+        }
+    }
+
+    /* public void showFoundTasks(TaskList tasks) throws ReverieException {
+        if (tasks.isEmpty()) {
+            System.out.println(" No matching tasks found!");
+        } else {
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
+            }
+        }
+    } */
+
+    public void showFoundTasks(TaskList tasks, ArrayList<Integer> matchingIndices) throws ReverieException {
+        if (matchingIndices.isEmpty()) {
+            System.out.println(" No matching tasks found!");
+        } else {
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int index : matchingIndices) {
+                System.out.println(" " + (index + 1) + "." + tasks.get(index).getFullStatus());
             }
         }
     }
