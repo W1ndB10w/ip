@@ -90,11 +90,11 @@ public class Storage {
     }
 
     private String formatDeadline(Deadline deadline, String isDone) {
-        return "D | " + isDone + " | " + deadline.getDescription() + " | " + deadline.by;
+        return "D | " + isDone + " | " + deadline.getDescription() + " | " + deadline.getByString();
     }
 
     private String formatEvent(Event event, String isDone) {
-        return "E | " + isDone + " | " + event.getDescription() + " | " + event.from + " | " + event.to;
+        return "E | " + isDone + " | " + event.getDescription() + " | " + event.getFromString() + " | " + event.getToString();
     }
 
     private Task parseTaskFromFile(String line) throws ReverieException {
