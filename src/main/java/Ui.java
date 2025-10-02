@@ -85,7 +85,7 @@ public class Ui {
         }
     }
 
-    public void showFoundTasks(TaskList tasks) throws ReverieException {
+    /* public void showFoundTasks(TaskList tasks) throws ReverieException {
         if (tasks.isEmpty()) {
             System.out.println(" No matching tasks found!");
         } else {
@@ -94,8 +94,19 @@ public class Ui {
                 System.out.println(" " + (i + 1) + "." + tasks.get(i).getFullStatus());
             }
         }
-    }
+    } */
 
+    public void showFoundTasks(TaskList tasks, ArrayList<Integer> matchingIndices) throws ReverieException {
+        if (matchingIndices.isEmpty()) {
+            System.out.println(" No matching tasks found!");
+        } else {
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int index : matchingIndices) {
+                System.out.println(" " + (index + 1) + "." + tasks.get(index).getFullStatus());
+            }
+        }
+    }
+    
     public void showLoadedTasks(int count) {
         if (count > 0) {
             showLine();
