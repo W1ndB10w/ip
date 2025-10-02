@@ -1,3 +1,11 @@
+package reverie.command;
+
+import reverie.exception.ReverieException;
+import reverie.storage.Storage;
+import reverie.task.Task;
+import reverie.ui.TaskList;
+import reverie.ui.Ui;
+
 public class MarkCommand extends Command {
     private final String arguments;
     private final boolean isMark;
