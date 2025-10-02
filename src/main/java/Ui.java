@@ -1,9 +1,13 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Ui {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private final Scanner scanner;
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
     public Ui() {
         this.scanner = new Scanner(System.in);
@@ -102,6 +106,18 @@ public class Ui {
             System.out.println(" No matching tasks found!");
         } else {
             System.out.println(" Here are the matching tasks in your list:");
+            for (int index : matchingIndices) {
+                System.out.println(" " + (index + 1) + "." + tasks.get(index).getFullStatus());
+            }
+        }
+    }
+
+    public void showSchedule(TaskList tasks, ArrayList<Integer> matchingIndices, LocalDate date) throws ReverieException {
+        String formattedDate = date.format(OUTPUT_FORMAT);
+        if (matchingIndices.isEmpty()) {
+            System.out.println(" No tasks scheduled for " + formattedDate + "!");
+        } else {
+            System.out.println(" Here are the tasks scheduled for " + formattedDate + ":");
             for (int index : matchingIndices) {
                 System.out.println(" " + (index + 1) + "." + tasks.get(index).getFullStatus());
             }
