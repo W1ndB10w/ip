@@ -1,9 +1,12 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Ui {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private final Scanner scanner;
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy");
 
     public Ui() {
         this.scanner = new Scanner(System.in);
