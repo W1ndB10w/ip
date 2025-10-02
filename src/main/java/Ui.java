@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Ui {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private final Scanner scanner;
-    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public Ui() {
         this.scanner = new Scanner(System.in);
