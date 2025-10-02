@@ -74,7 +74,7 @@ public class Ui {
         System.out.println("   " + task.getFullStatus());
     }
 
-    public void showTaskList(TaskList tasks) {
+    public void showTaskList(TaskList tasks) throws ReverieException {
         if (tasks.isEmpty()) {
             System.out.println(" No tasks added yet!");
         } else {
