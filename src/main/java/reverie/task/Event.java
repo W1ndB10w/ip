@@ -23,13 +23,13 @@ public class Event extends Task {
     }
 
     public LocalDate getFrom() {
-        return from;
+        return fromDate;
     }
 
     public LocalDate getTo() {
-        return to;
+        return toDate;
     }
-    
+
     private LocalDate parseDate(String dateString) throws ReverieException {
         try {
             return LocalDate.parse(dateString, INPUT_FORMAT);
