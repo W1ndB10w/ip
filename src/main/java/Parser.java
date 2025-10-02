@@ -39,14 +39,18 @@ public class Parser {
 
     private static Task parseDeadline(String input) throws ReverieException {
         if (input.length() <= "deadline ".length()) {
-            throw new ReverieException("The description of a deadline cannot be empty!\nFormat: deadline <description> /by <time>");
+            throw new ReverieException("The description of a deadline cannot be empty!\n" +
+                    "Format: deadline <description> /by <time>\n" +
+                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
         }
 
         String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
         String[] parts = content.split("\\s+/by\\s+", 2);
 
         if (parts.length < 2) {
-            throw new ReverieException("Invalid deadline format!\nFormat: deadline <description> /by <time>");
+            throw new ReverieException("Invalid deadline format!\n" +
+                    "Format: deadline <description> /by <time>\n" +
+                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
         }
 
         String description = parts[0].trim();
