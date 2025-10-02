@@ -1,3 +1,9 @@
+package reverie.command;
+
+import reverie.exception.ReverieException;
+import reverie.storage.Storage;
+import reverie.ui.TaskList;
+import reverie.ui.Ui;
 import java.util.ArrayList;
 
 public class FindCommand extends Command {
