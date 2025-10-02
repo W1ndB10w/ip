@@ -69,4 +69,8 @@ public class Parser {
 
         return new Deadline(description, by);
     }
+
+    private static Task parseEvent(String input) throws ReverieException {
+        
+    }
 }
