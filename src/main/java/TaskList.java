@@ -36,4 +36,8 @@ public class TaskList {
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
+
+    public ArrayList<Task> getAllTasks() {
+        return new ArrayList<>(tasks);
+    }
 }
