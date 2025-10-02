@@ -71,6 +71,31 @@ public class Parser {
     }
 
     private static Task parseEvent(String input) throws ReverieException {
-        
+        if (input.length() <= "event ".length()) {
+            throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
+        }
+
+        String content = input.replaceFirst("(?i)^event\\s+", "").trim();
+        String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
+
+        if (parts.length < 3) {
+            throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
+        }
+
+        String description = parts[0].trim();
+        String from = parts[1].trim();
+        String to = parts[2].trim();
+
+        if (description.isEmpty()) {
+            throw new ReverieException("The description of an event cannot be empty!");
+        }
+        if (from.isEmpty()) {
+            throw new ReverieException("The start time of an event cannot be empty!");
+        }
+        if (to.isEmpty()) {
+            throw new ReverieException("The end time of an event cannot be empty!");
+        }
+
+        return new Event(description, from, to);
     }
 }
