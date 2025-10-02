@@ -40,6 +40,10 @@ public class Reverie {
 
         ui.close();
     }
+
+    public static void main(String[] args) {
+        new Reverie("./data/reverie.txt").run();
+    }
     /* private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final ArrayList<Task> tasks = new ArrayList<>();
     private static final Storage storage = new Storage();
