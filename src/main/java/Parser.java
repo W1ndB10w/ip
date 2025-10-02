@@ -88,14 +88,18 @@ public class Parser {
 
     private static String[] getEventParts(String input) throws ReverieException {
         if (input.length() <= "event ".length()) {
-            throw new ReverieException("The description of an event cannot be empty!\nFormat: event <description> /from <start> /to <end>");
+            throw new ReverieException("The description of an event cannot be empty!\n" +
+                    "Format: event <description> /from <start> /to <end>\n" +
+                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
         }
 
         String content = input.replaceFirst("(?i)^event\\s+", "").trim();
         String[] parts = content.split("\\s+/from\\s+|\\s+/to\\s+", 3);
 
         if (parts.length < 3) {
-            throw new ReverieException("Invalid event format!\nFormat: event <description> /from <start> /to <end>");
+            throw new ReverieException("Invalid event format!\n" +
+                    "Format: event <description> /from <start> /to <end>\n" +
+                    "Date format: yyyy-MM-dd (e.g., 2019-12-02)");
         }
         return parts;
     }
