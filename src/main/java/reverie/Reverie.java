@@ -1,6 +1,15 @@
 // import java.util.Scanner;
 // import java.util.ArrayList;
 
+package reverie;
+
+import reverie.command.Command;
+import reverie.exception.ReverieException;
+import reverie.parser.Parser;
+import reverie.storage.Storage;
+import reverie.ui.TaskList;
+import reverie.ui.Ui;
+
 public class Reverie {
     private final Storage storage;
     private TaskList tasks;
