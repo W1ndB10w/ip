@@ -111,6 +111,10 @@ public class Ui {
         }
     }
 
+    public void showSchedule(TaskList tasks, ArrayList<Integer> matchingIndices, LocalDate date) throws ReverieException {
+        
+    }
+
     public void showLoadedTasks(int count) {
         if (count > 0) {
             showLine();
