@@ -17,9 +17,10 @@ public class Deadline extends Task {
             return null;
         }
     }
-    
+
     @Override
     public String getFullStatus() {
-        return "[D]" + super.getFullStatus() + " (by: " + by + ")";
+        String dateString = byDate != null ? byDate.format(OUTPUT_FORMAT) : by;
+        return "[D]" + super.getFullStatus() + " (by: " + dateString + ")";
     }
 }
