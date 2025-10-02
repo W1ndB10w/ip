@@ -28,4 +28,8 @@ public class TaskList {
         }
         return tasks.get(index);
     }
+
+    public int size() {
+        return tasks.size();
+    }
 }
