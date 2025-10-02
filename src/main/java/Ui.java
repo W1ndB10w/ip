@@ -84,4 +84,11 @@ public class Ui {
             }
         }
     }
+
+    public void showLoadedTasks(int count) {
+        if (count > 0) {
+            System.out.println(" Loaded " + count + " task(s) from file.");
+            showLine();
+        }
+    }
 }
