@@ -23,4 +23,12 @@ public class Deadline extends Task {
         String dateString = byDate != null ? byDate.format(OUTPUT_FORMAT) : by;
         return "[D]" + super.getFullStatus() + " (by: " + dateString + ")";
     }
+
+    public String getByDateString() {
+        return by;
+    }
+
+    public LocalDate getByDate() {
+        return byDate;
+    }
 }
