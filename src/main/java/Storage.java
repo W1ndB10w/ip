@@ -9,6 +9,11 @@ public class Storage {
     private final String filePath;
     private static final String DELIMITER = " \\| ";
     private static final String DONE_MARKER = "1";
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+        createDataDirectory();
+    }
     /* private static final String FILE_PATH = "./data/reverie.txt";
     private static final String DATA_DIRECTORY = "./data";
     private static final String DELIMITER = " \\| ";
