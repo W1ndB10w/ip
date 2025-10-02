@@ -17,3 +17,7 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 data/
 src/main/java/META-INF/
+text-ui-test/EXPECTED.TXT
+text-ui-test/input.txt
+text-ui-test/runtest.bat
+text-ui-test/
