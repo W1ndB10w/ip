@@ -13,6 +13,36 @@ public class ScheduleCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ReverieException {
-        
+        if (dateString.trim().isEmpty()) {
+            throw new ReverieException("Please specify a date to check the schedule\n" +
+                    "Format: schedule yyyy-MM-dd (e.g., schedule 2019-12-02)");
+        }
+
+        LocalDate targetDate;
+        try {
+            targetDate = LocalDate.parse(dateString.trim(), INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new ReverieException("Invalid date format! Please use yyyy-MM-dd (e.g., 2019-12-02)");
+        }
+
+        ArrayList<Integer> matchingIndices = new ArrayList<>();
+        ArrayList<Task> allTasks = tasks.getAllTasks();
+
+        for (int i = 0; i < allTasks.size(); i++) {
+            Task task = allTasks.get(i);
+            if (task instanceof Deadline deadline) {
+                if (deadline.getByDate() != null && deadline.getByDate().equals(targetDate)) {
+                    matchingIndices.add(i);
+                }
+            } else if (task instanceof Event event) {
+                if (event.getFromDate() != null && event.getToDate() != null) {
+                    if (!targetDate.isBefore(event.getFromDate()) && !targetDate.isAfter(event.getToDate())) {
+                        matchingIndices.add(i);
+                    }
+                }
+            }
+        }
+
+        ui.showSchedule(tasks, matchingIndices, targetDate);
     }
 }
