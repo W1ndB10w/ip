@@ -2,7 +2,9 @@
 // import java.util.ArrayList;
 
 public class Reverie {
-    
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
     /* private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final ArrayList<Task> tasks = new ArrayList<>();
     private static final Storage storage = new Storage();
