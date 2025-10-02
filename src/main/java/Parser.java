@@ -33,6 +33,15 @@ public class Parser {
     }
 
     private static Task parseTodo(String input) throws ReverieException {
-        
+        if (input.length() <= "todo ".length()) {
+            throw new ReverieException("The description of a todo cannot be empty!");
+        }
+
+        String description = input.replaceFirst("(?i)^todo\\s+", "").trim();
+        if (description.isEmpty()) {
+            throw new ReverieException("The description of a todo cannot be empty!");
+        }
+
+        return new Todo(description);
     }
 }
