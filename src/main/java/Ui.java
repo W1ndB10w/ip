@@ -91,4 +91,13 @@ public class Ui {
             showLine();
         }
     }
+
+    public void showGoodbye() {
+        System.out.println(" Bye. Hope to see you again soon!");
+        showLine();
+    }
+
+    public void close() {
+        scanner.close();
+    }
 }
