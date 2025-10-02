@@ -25,6 +25,12 @@ public class ScheduleCommand extends Command {
             throw new ReverieException("Invalid date format! Please use yyyy-MM-dd (e.g., 2019-12-02)");
         }
 
+        ArrayList<Integer> matchingIndices = getIndicesFromDate(tasks, targetDate);
+
+        ui.showSchedule(tasks, matchingIndices, targetDate);
+    }
+
+    private static ArrayList<Integer> getIndicesFromDate(TaskList tasks, LocalDate targetDate) {
         ArrayList<Integer> matchingIndices = new ArrayList<>();
         ArrayList<Task> allTasks = tasks.getAllTasks();
 
@@ -42,7 +48,6 @@ public class ScheduleCommand extends Command {
                 }
             }
         }
-
-        ui.showSchedule(tasks, matchingIndices, targetDate);
+        return matchingIndices;
     }
 }
