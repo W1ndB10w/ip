@@ -59,11 +59,24 @@ public class Event extends Task {
     public LocalDateTime getToDateTime() {
         return toDateTime;
     }
-    
+
     @Override
     public String getFullStatus() {
-        String fromString = fromDate != null ? fromDate.format(OUTPUT_FORMAT) : from;
-        String toString = toDate != null ? toDate.format(OUTPUT_FORMAT) : to;
+        String fromString;
+        String toString;
+
+        if (fromDateTime != null) {
+            fromString = hasTime ? fromDateTime.format(OUTPUT_FORMAT_WITH_TIME) : fromDateTime.format(OUTPUT_FORMAT_DATE_ONLY);
+        } else {
+            fromString = from;
+        }
+
+        if (toDateTime != null) {
+            toString = hasTime ? toDateTime.format(OUTPUT_FORMAT_WITH_TIME) : toDateTime.format(OUTPUT_FORMAT_DATE_ONLY);
+        } else {
+            toString = to;
+        }
+
         return "[E]" + super.getFullStatus() + " (from: " + fromString + " to: " + toString + ")";
     }
 }
