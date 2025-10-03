@@ -49,6 +49,7 @@ public class DateTimeParser {
     }
 
     public static class ParseResult {
-        
+        private final LocalDateTime dateTime;
+        private final boolean hasTime;
     }
 }
