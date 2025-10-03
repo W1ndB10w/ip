@@ -56,5 +56,13 @@ public class DateTimeParser {
             this.dateTime = dateTime;
             this.hasTime = hasTime;
         }
+
+        public LocalDateTime getDateTime() {
+            return dateTime;
+        }
+
+        public boolean hasTime() {
+            return hasTime;
+        }
     }
 }
