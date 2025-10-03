@@ -83,5 +83,14 @@ public class DateTimeParser {
             } catch (DateTimeParseException ignored) {
             }
         }
+
+        // Try date-only formats (set time to 00:00)
+        for (DateTimeFormatter formatter : DATE_FORMATTERS) {
+            try {
+                LocalDate date = LocalDate.parse(trimmed, formatter);
+                return new ParseResult(date.atStartOfDay(), false);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
     }
 }
