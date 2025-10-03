@@ -16,12 +16,28 @@ public class Event extends Task {
     private static final DateTimeFormatter OUTPUT_FORMAT_DATE_ONLY =
             DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
+    // Constructor without time
     public Event(String description, String from, String to) throws ReverieException {
         super(description);
         this.from = from;
         this.to = to;
-        this.fromDate = parseDate(from);
-        this.toDate = parseDate(to);
+        DateTimeParser.ParseResult fromResult = DateTimeParser.parseDateTime(from);
+        DateTimeParser.ParseResult toResult = DateTimeParser.parseDateTime(to);
+        this.fromDateTime = fromResult.getDateTime();
+        this.toDateTime = toResult.getDateTime();
+        this.hasTime = fromResult.hasTime() || toResult.hasTime();
+    }
+
+    // Constructor with time
+    public Event(String description, String from, String to, boolean hasTime) throws ReverieException {
+        super(description);
+        this.from = from;
+        this.to = to;
+        DateTimeParser.ParseResult fromResult = DateTimeParser.parseDateTime(from);
+        DateTimeParser.ParseResult toResult = DateTimeParser.parseDateTime(to);
+        this.fromDateTime = fromResult.getDateTime();
+        this.toDateTime = toResult.getDateTime();
+        this.hasTime = hasTime;
     }
 
     public String getFromString() {
