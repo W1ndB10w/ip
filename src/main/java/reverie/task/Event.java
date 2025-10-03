@@ -59,15 +59,7 @@ public class Event extends Task {
     public LocalDateTime getToDateTime() {
         return toDateTime;
     }
-
-    private LocalDate parseDate(String dateString) throws ReverieException {
-        try {
-            return LocalDate.parse(dateString, INPUT_FORMAT);
-        } catch (DateTimeParseException e) {
-            throw new ReverieException("Invalid date format. Please use yyyy-MM-dd (e.g., 2019-12-02)");
-        }
-    }
-
+    
     @Override
     public String getFullStatus() {
         String fromString = fromDate != null ? fromDate.format(OUTPUT_FORMAT) : from;
