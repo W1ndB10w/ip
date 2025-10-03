@@ -110,7 +110,7 @@ public class Parser {
             throw new ReverieException("""
                     Invalid event format!
                     Format: event <description> /from <start> /to <end>
-                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
+                    Date-time examples: 2019-12-02 1800, 2019-12-02, 1800, Dec 02 2019, etc.""");
         }
         return parts;
     }
