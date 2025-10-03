@@ -40,6 +40,10 @@ public class Event extends Task {
         this.hasTime = hasTime;
     }
 
+    public boolean hasTime() {
+        return hasTime;
+    }
+    
     public String getFromString() {
         return from;
     }
