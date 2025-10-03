@@ -8,10 +8,13 @@ import java.util.Locale;
 public class Event extends Task {
     protected String from;
     protected String to;
-    protected LocalDate fromDate;
-    protected LocalDate toDate;
-    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
+    protected LocalDateTime fromDateTime;
+    protected LocalDateTime toDateTime;
+    protected boolean hasTime;
+    private static final DateTimeFormatter OUTPUT_FORMAT_WITH_TIME =
+            DateTimeFormatter.ofPattern("HH:mm MMM dd yyyy", Locale.ENGLISH);
+    private static final DateTimeFormatter OUTPUT_FORMAT_DATE_ONLY =
+            DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
     public Event(String description, String from, String to) throws ReverieException {
         super(description);
