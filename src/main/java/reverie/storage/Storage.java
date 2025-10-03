@@ -154,10 +154,16 @@ public class Storage {
     }
 
     private Task createEvent(String description, String[] parts) throws ReverieException {
-        if (parts.length != 5) {
+        if (parts.length == 5) {
+            // Old format without hasTime flag - default to false (date only)
+            return new Event(description, parts[3].trim(), parts[4].trim(), false);
+        } else if (parts.length == 6) {
+            // New format with hasTime flag
+            boolean hasTime = parts[5].trim().equals("1");
+            return new Event(description, parts[3].trim(), parts[4].trim(), hasTime);
+        } else {
             throw new ReverieException("Invalid Event format");
         }
-        return new Event(description, parts[3].trim(), parts[4].trim());
     }
     /* private static final String FILE_PATH = "./data/reverie.txt";
     private static final String DATA_DIRECTORY = "./data";
