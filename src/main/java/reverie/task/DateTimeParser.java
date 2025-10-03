@@ -68,4 +68,8 @@ public class DateTimeParser {
             return hasTime;
         }
     }
+
+    public static ParseResult parseDateTime(String input) {
+        
+    }
 }
