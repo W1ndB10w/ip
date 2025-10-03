@@ -13,10 +13,23 @@ public class Deadline extends Task {
             DateTimeFormatter.ofPattern("HH:mm MMM dd yyyy", Locale.ENGLISH);
     private static final DateTimeFormatter OUTPUT_FORMAT_DATE_ONLY =
             DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
+
+    // Constructor without time
     public Deadline(String description, String by) throws ReverieException {
         super(description);
         this.by = by;
-        this.byDate = parseDate(by);
+        DateTimeParser.ParseResult result = DateTimeParser.parseDateTime(by);
+        this.byDateTime = result.getDateTime();
+        this.hasTime = result.hasTime();
+    }
+
+    // Constructor with time
+    public Deadline(String description, String by, boolean hasTime) throws ReverieException {
+        super(description);
+        this.by = by;
+        DateTimeParser.ParseResult result = DateTimeParser.parseDateTime(by);
+        this.byDateTime = result.getDateTime();
+        this.hasTime = hasTime;
     }
 
     public String getByString() {
