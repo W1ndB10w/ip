@@ -101,5 +101,8 @@ public class DateTimeParser {
             } catch (DateTimeParseException ignored) {
             }
         }
+
+        // If all parsing fails, return null (treat as plain text)
+        return new ParseResult(null, false);
     }
 }
