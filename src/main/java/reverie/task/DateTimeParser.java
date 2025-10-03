@@ -47,4 +47,8 @@ public class DateTimeParser {
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("h:mm a"));
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("h:mma"));
     }
+
+    public static class ParseResult {
+        
+    }
 }
