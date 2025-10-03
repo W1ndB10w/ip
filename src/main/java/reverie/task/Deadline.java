@@ -7,10 +7,12 @@ import java.util.Locale;
 
 public class Deadline extends Task {
     protected String by;
-    protected LocalDate byDate;
-    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
-
+    protected LocalDateTime byDateTime;
+    protected boolean hasTime;
+    private static final DateTimeFormatter OUTPUT_FORMAT_WITH_TIME =
+            DateTimeFormatter.ofPattern("HH:mm MMM dd yyyy", Locale.ENGLISH);
+    private static final DateTimeFormatter OUTPUT_FORMAT_DATE_ONLY =
+            DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
     public Deadline(String description, String by) throws ReverieException {
         super(description);
         this.by = by;
