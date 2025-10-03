@@ -38,5 +38,13 @@ public class DateTimeParser {
         DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy MMM dd"));
+
+        // Time-only formats
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm"));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm"));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hh:mm a"));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hh:mma"));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("h:mm a"));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("h:mma"));
     }
 }
