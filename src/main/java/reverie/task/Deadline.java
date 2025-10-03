@@ -51,7 +51,7 @@ public class Deadline extends Task {
         return "[D]" + super.getFullStatus() + " (by: " + dateString + ")";
     }
 
-    public LocalDate getByDate() {
-        return byDate;
+    public LocalDateTime getByDateTime() {
+        return byDateTime;
     }
 }
