@@ -39,10 +39,15 @@ public class Deadline extends Task {
     public String getByString() {
         return by;
     }
-    
+
     @Override
     public String getFullStatus() {
-        String dateString = byDate != null ? byDate.format(OUTPUT_FORMAT) : by;
+        String dateString;
+        if (byDateTime != null) {
+            dateString = hasTime ? byDateTime.format(OUTPUT_FORMAT_WITH_TIME) : byDateTime.format(OUTPUT_FORMAT_DATE_ONLY);
+        } else {
+            dateString = by;
+        }
         return "[D]" + super.getFullStatus() + " (by: " + dateString + ")";
     }
 
