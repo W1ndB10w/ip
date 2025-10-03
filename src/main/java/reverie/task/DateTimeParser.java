@@ -92,5 +92,14 @@ public class DateTimeParser {
             } catch (DateTimeParseException ignored) {
             }
         }
+
+        // Try time-only formats (set date to today)
+        for (DateTimeFormatter formatter : TIME_FORMATTERS) {
+            try {
+                LocalTime time = LocalTime.parse(trimmed, formatter);
+                return new ParseResult(LocalDateTime.of(LocalDate.now(), time), true);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
     }
 }
