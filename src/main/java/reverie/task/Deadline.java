@@ -32,6 +32,10 @@ public class Deadline extends Task {
         this.hasTime = hasTime;
     }
 
+    public boolean hasTime() {
+        return hasTime;
+    }
+    
     public String getByString() {
         return by;
     }
