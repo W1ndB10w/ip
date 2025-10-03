@@ -1,6 +1,5 @@
 package reverie.task;
 
-import reverie.exception.ReverieException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
