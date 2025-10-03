@@ -70,6 +70,8 @@ public class DateTimeParser {
     }
 
     public static ParseResult parseDateTime(String input) {
-        
+        if (input == null || input.trim().isEmpty()) {
+            return new ParseResult(null, false);
+        }
     }
 }
