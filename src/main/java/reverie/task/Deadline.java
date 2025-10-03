@@ -15,7 +15,7 @@ public class Deadline extends Task {
             DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
     // Constructor without time
-    public Deadline(String description, String by) throws ReverieException {
+    public Deadline(String description, String by) {
         super(description);
         this.by = by;
         DateTimeParser.ParseResult result = DateTimeParser.parseDateTime(by);
@@ -24,7 +24,7 @@ public class Deadline extends Task {
     }
 
     // Constructor with time
-    public Deadline(String description, String by, boolean hasTime) throws ReverieException {
+    public Deadline(String description, String by, boolean hasTime) {
         super(description);
         this.by = by;
         DateTimeParser.ParseResult result = DateTimeParser.parseDateTime(by);

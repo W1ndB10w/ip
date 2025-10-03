@@ -17,7 +17,7 @@ public class Event extends Task {
             DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
     // Constructor without time
-    public Event(String description, String from, String to) throws ReverieException {
+    public Event(String description, String from, String to) {
         super(description);
         this.from = from;
         this.to = to;
@@ -29,7 +29,7 @@ public class Event extends Task {
     }
 
     // Constructor with time
-    public Event(String description, String from, String to, boolean hasTime) throws ReverieException {
+    public Event(String description, String from, String to, boolean hasTime) {
         super(description);
         this.from = from;
         this.to = to;
