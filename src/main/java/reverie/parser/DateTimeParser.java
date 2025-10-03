@@ -1,4 +1,4 @@
-package reverie.task;
+package reverie.parser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
