@@ -90,7 +90,8 @@ public class Storage {
     }
 
     private String formatDeadline(Deadline deadline, String isDone) {
-        return "D | " + isDone + " | " + deadline.getDescription() + " | " + deadline.getByString();
+        return "D | " + isDone + " | " + deadline.getDescription() + " | " +
+                deadline.getByString() + " | " + (deadline.hasTime() ? "1" : "0");
     }
 
     private String formatEvent(Event event, String isDone) {
