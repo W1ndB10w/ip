@@ -73,5 +73,15 @@ public class DateTimeParser {
         if (input == null || input.trim().isEmpty()) {
             return new ParseResult(null, false);
         }
+
+        String trimmed = input.trim();
+
+        // Try full date-time formats first
+        for (DateTimeFormatter formatter : DATE_TIME_FORMATTERS) {
+            try {
+                return new ParseResult(LocalDateTime.parse(trimmed, formatter), true);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
     }
 }
