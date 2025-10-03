@@ -35,19 +35,11 @@ public class Deadline extends Task {
     public boolean hasTime() {
         return hasTime;
     }
-    
+
     public String getByString() {
         return by;
     }
-
-    private LocalDate parseDate(String dateString) throws ReverieException {
-        try {
-            return LocalDate.parse(dateString, INPUT_FORMAT);
-        } catch (DateTimeParseException e) {
-            throw new ReverieException("Invalid date format. Please use yyyy-MM-dd (e.g., 2019-12-02)");
-        }
-    }
-
+    
     @Override
     public String getFullStatus() {
         String dateString = byDate != null ? byDate.format(OUTPUT_FORMAT) : by;
