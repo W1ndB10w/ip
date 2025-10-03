@@ -95,7 +95,9 @@ public class Storage {
     }
 
     private String formatEvent(Event event, String isDone) {
-        return "E | " + isDone + " | " + event.getDescription() + " | " + event.getFromString() + " | " + event.getToString();
+        return "E | " + isDone + " | " + event.getDescription() + " | " +
+                event.getFromString() + " | " + event.getToString() + " | " +
+                (event.hasTime() ? "1" : "0");
     }
 
     private Task parseTaskFromFile(String line) throws ReverieException {
