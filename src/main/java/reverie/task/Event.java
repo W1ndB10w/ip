@@ -43,7 +43,7 @@ public class Event extends Task {
     public boolean hasTime() {
         return hasTime;
     }
-    
+
     public String getFromString() {
         return from;
     }
@@ -52,12 +52,12 @@ public class Event extends Task {
         return to;
     }
 
-    public LocalDate getFromDate() {
-        return fromDate;
+    public LocalDateTime getFromDateTime() {
+        return fromDateTime;
     }
 
-    public LocalDate getToDate() {
-        return toDate;
+    public LocalDateTime getToDateTime() {
+        return toDateTime;
     }
 
     private LocalDate parseDate(String dateString) throws ReverieException {
