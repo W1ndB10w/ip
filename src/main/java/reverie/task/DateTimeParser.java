@@ -48,6 +48,9 @@ public class DateTimeParser {
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("h:mma"));
     }
 
+    /**
+     * Result of parsing that includes both the LocalDateTime and whether time was present
+     */
     public static class ParseResult {
         private final LocalDateTime dateTime;
         private final boolean hasTime;
