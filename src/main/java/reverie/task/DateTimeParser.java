@@ -69,6 +69,11 @@ public class DateTimeParser {
         }
     }
 
+    /**
+     * Parses a date-time string flexibly.
+     * Returns LocalDateTime if parsing succeeds, null if input is plain text.
+     * Returns a ParseResult indicating whether time was included in the input.
+     */
     public static ParseResult parseDateTime(String input) {
         if (input == null || input.trim().isEmpty()) {
             return new ParseResult(null, false);
