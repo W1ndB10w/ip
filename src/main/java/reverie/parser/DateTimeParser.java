@@ -25,6 +25,8 @@ public class DateTimeParser {
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy MMM dd HHmm"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy MMM dd HH:mm"));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
