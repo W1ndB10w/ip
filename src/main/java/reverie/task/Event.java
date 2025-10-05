@@ -85,7 +85,7 @@ public class Event extends Task {
     /**
      * Returns the original "from" string as provided by the user.
      *
-     * @return The from string.
+     * @return The "from" string.
      */
     public String getFromString() {
         return from;
@@ -94,7 +94,7 @@ public class Event extends Task {
     /**
      * Returns the original "to" string as provided by the user.
      *
-     * @return The to string.
+     * @return The "to" string.
      */
     public String getToString() {
         return to;
@@ -103,7 +103,7 @@ public class Event extends Task {
     /**
      * Returns the parsed start date-time of the event.
      *
-     * @return The from LocalDateTime.
+     * @return The "from" LocalDateTime.
      */
     public LocalDateTime getFromDateTime() {
         return fromDateTime;
@@ -112,7 +112,7 @@ public class Event extends Task {
     /**
      * Returns the parsed end date-time of the event.
      *
-     * @return The to LocalDateTime.
+     * @return The "to" LocalDateTime.
      */
     public LocalDateTime getToDateTime() {
         return toDateTime;
