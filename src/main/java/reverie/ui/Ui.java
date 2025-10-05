@@ -53,11 +53,10 @@ public class Ui {
      * Displays the welcome message with the Reverie logo.
      */
     public void showWelcome() {
-        String[] logo = getLogo();  // Reverie picture
-
         showLine();
 
         // Print Reverie picture
+        String[] logo = getLogo();
         for (String line : logo) {
             System.out.println(line);
         }
