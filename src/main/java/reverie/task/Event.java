@@ -1,6 +1,8 @@
 package reverie.task;
 
 import reverie.parser.DateTimeParser;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -21,10 +23,19 @@ public class Event extends Task {
         super(description);
         this.from = from;
         this.to = to;
+
         DateTimeParser.ParseResult fromResult = DateTimeParser.parseDateTime(from);
         DateTimeParser.ParseResult toResult = DateTimeParser.parseDateTime(to);
-        this.fromDateTime = fromResult.getDateTime();
-        this.toDateTime = toResult.getDateTime();
+
+        LocalDateTime fromDateTime = fromResult.getDateTime();
+        LocalDateTime toDateTime = toResult.getDateTime();
+
+        // Handle smart date inference
+        fromDateTime = inferFromDateTime(fromDateTime, toDateTime, fromResult, toResult);
+        toDateTime = inferToDateTime(fromDateTime, toDateTime, fromResult, toResult);
+
+        this.fromDateTime = fromDateTime;
+        this.toDateTime = toDateTime;
         this.hasTime = fromResult.hasTime() || toResult.hasTime();
     }
 
@@ -33,8 +44,10 @@ public class Event extends Task {
         super(description);
         this.from = from;
         this.to = to;
+
         DateTimeParser.ParseResult fromResult = DateTimeParser.parseDateTime(from);
         DateTimeParser.ParseResult toResult = DateTimeParser.parseDateTime(to);
+
         this.fromDateTime = fromResult.getDateTime();
         this.toDateTime = toResult.getDateTime();
         this.hasTime = hasTime;
