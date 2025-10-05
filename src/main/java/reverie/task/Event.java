@@ -74,8 +74,29 @@ public class Event extends Task {
     }
 
     // Infer the 'from' date when only time is provided
-    private LocalDateTime inferFromDateTime() {
-        
+    private LocalDateTime inferFromDateTime(LocalDateTime fromDateTime, LocalDateTime toDateTime,
+                                            DateTimeParser.ParseResult fromResult,
+                                            DateTimeParser.ParseResult toResult) {
+        // If 'from' has only time and 'to' has date+time
+        if (fromDateTime != null && toDateTime != null &&
+                fromResult.hasTime() && toResult.hasTime() &&
+                fromDateTime.toLocalDate().equals(LocalDate.now()) &&
+                !toDateTime.toLocalDate().equals(LocalDate.now())) {
+
+            LocalDate toDate = toDateTime.toLocalDate();
+            LocalTime fromTime = fromDateTime.toLocalTime();
+            LocalTime toTime = toDateTime.toLocalTime();
+
+            // If from_time is between 0000-toTime, use same day as 'to'
+            if (fromTime.isBefore(toTime) || fromTime.equals(toTime)) {
+                return LocalDateTime.of(toDate, fromTime);
+            } else {
+                // If from_time is after toTime, use previous day
+                return LocalDateTime.of(toDate.minusDays(1), fromTime);
+            }
+        }
+
+        return fromDateTime;
     }
 
     @Override
