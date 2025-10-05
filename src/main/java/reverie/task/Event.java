@@ -7,6 +7,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * Represents an event task with a start and end time.
+ * An <code>Event</code> object has a description, start time (from), and end time (to).
+ * It supports smart date inference when only times are provided.
+ */
 public class Event extends Task {
     protected String from;
     protected String to;
@@ -18,7 +23,14 @@ public class Event extends Task {
     private static final DateTimeFormatter OUTPUT_FORMAT_DATE_ONLY =
             DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
-    // Constructor without time
+    /**
+     * Constructs an Event task with the specified description and time range.
+     * Automatically parses and infers dates when only times are provided.
+     *
+     * @param description The description of the event.
+     * @param from The start time of the event.
+     * @param to The end time of the event.
+     */
     public Event(String description, String from, String to) {
         super(description);
         this.from = from;
@@ -30,7 +42,7 @@ public class Event extends Task {
         LocalDateTime fromDateTime = fromResult.getDateTime();
         LocalDateTime toDateTime = toResult.getDateTime();
 
-        // Handle smart date inference
+        // Handle intelligent date inference
         fromDateTime = inferFromDateTime(fromDateTime, toDateTime, fromResult, toResult);
         toDateTime = inferToDateTime(fromDateTime, toDateTime, fromResult, toResult);
 
@@ -39,7 +51,15 @@ public class Event extends Task {
         this.hasTime = fromResult.hasTime() || toResult.hasTime();
     }
 
-    // Constructor with time
+    /**
+     * Constructs an Event task with the specified description, time range, and time flag.
+     * This constructor is typically used when loading from storage.
+     *
+     * @param description The description of the event.
+     * @param from The start time of the event.
+     * @param to The end time of the event.
+     * @param hasTime Whether the event includes specific times.
+     */
     public Event(String description, String from, String to, boolean hasTime) {
         super(description);
         this.from = from;
@@ -53,27 +73,61 @@ public class Event extends Task {
         this.hasTime = hasTime;
     }
 
+    /**
+     * Checks if the event has specific time information.
+     *
+     * @return True if the event has time information, false otherwise.
+     */
     public boolean hasTime() {
         return hasTime;
     }
 
+    /**
+     * Returns the original "from" string as provided by the user.
+     *
+     * @return The from string.
+     */
     public String getFromString() {
         return from;
     }
 
+    /**
+     * Returns the original "to" string as provided by the user.
+     *
+     * @return The to string.
+     */
     public String getToString() {
         return to;
     }
 
+    /**
+     * Returns the parsed start date-time of the event.
+     *
+     * @return The from LocalDateTime.
+     */
     public LocalDateTime getFromDateTime() {
         return fromDateTime;
     }
 
+    /**
+     * Returns the parsed end date-time of the event.
+     *
+     * @return The to LocalDateTime.
+     */
     public LocalDateTime getToDateTime() {
         return toDateTime;
     }
 
-    // Infer the 'from' date when only time is provided
+    /**
+     * Infers the 'from' date when only time is provided.
+     * Uses smart inference based on the 'to' date and time comparison.
+     *
+     * @param fromDateTime The parsed from date-time.
+     * @param toDateTime The parsed to date-time.
+     * @param fromResult The parse result for from.
+     * @param toResult The parse result for to.
+     * @return The inferred from LocalDateTime.
+     */
     private LocalDateTime inferFromDateTime(LocalDateTime fromDateTime, LocalDateTime toDateTime,
                                             DateTimeParser.ParseResult fromResult,
                                             DateTimeParser.ParseResult toResult) {
@@ -99,7 +153,16 @@ public class Event extends Task {
         return fromDateTime;
     }
 
-    // Infer the 'to' date when only time is provided
+    /**
+     * Infers the 'to' date when only time is provided.
+     * Uses smart inference based on the 'from' date and time comparison.
+     *
+     * @param fromDateTime The parsed from date-time.
+     * @param toDateTime The parsed to date-time.
+     * @param fromResult The parse result for from.
+     * @param toResult The parse result for to.
+     * @return The inferred to LocalDateTime.
+     */
     private LocalDateTime inferToDateTime(LocalDateTime fromDateTime, LocalDateTime toDateTime,
                                           DateTimeParser.ParseResult fromResult,
                                           DateTimeParser.ParseResult toResult) {
@@ -125,6 +188,12 @@ public class Event extends Task {
         return toDateTime;
     }
 
+    /**
+     * Returns the full status string representation of the event task.
+     * The format is: [E][status icon] description (from: start to: end)
+     *
+     * @return The formatted status string.
+     */
     @Override
     public String getFullStatus() {
         String fromString;
