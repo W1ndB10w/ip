@@ -37,6 +37,20 @@ public class DateTimeParser {
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm").withLocale(Locale.ENGLISH));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm").withLocale(Locale.ENGLISH));
         DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm").withLocale(Locale.ENGLISH));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm yyyy-MM-dd"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm yyyy-MM-dd"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm yyyy/MM/dd"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm yyyy/MM/dd"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm dd-MM-yyyy"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm dd/MM/yyyy"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy"));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm yyyy MMM dd").withLocale(Locale.ENGLISH));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm yyyy MMM dd").withLocale(Locale.ENGLISH));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm MMM dd yyyy").withLocale(Locale.ENGLISH));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm MMM dd yyyy").withLocale(Locale.ENGLISH));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm dd MMM yyyy").withLocale(Locale.ENGLISH));
+        DATE_TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm dd MMM yyyy").withLocale(Locale.ENGLISH));
 
         // Date-only formats
         DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -50,6 +64,10 @@ public class DateTimeParser {
         // Time-only formats
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HHmm"));
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("HH:mm"));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hhmm a").withLocale(java.util.Locale.ENGLISH));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hhmma").withLocale(java.util.Locale.ENGLISH));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hmm a").withLocale(java.util.Locale.ENGLISH));
+        TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hmma").withLocale(java.util.Locale.ENGLISH));
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hh:mm a").withLocale(java.util.Locale.ENGLISH));
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("hh:mma").withLocale(java.util.Locale.ENGLISH));
         TIME_FORMATTERS.add(DateTimeFormatter.ofPattern("h:mm a").withLocale(java.util.Locale.ENGLISH));
