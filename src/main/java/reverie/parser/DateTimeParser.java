@@ -9,6 +9,11 @@ import java.util.Locale;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a flexible date-time parser for the Reverie chatbot.
+ * A <code>DateTimeParser</code> class provides methods to parse various
+ * date and time formats into LocalDateTime objects.
+ */
 public class DateTimeParser {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = new ArrayList<>();
     private static final List<DateTimeFormatter> DATE_FORMATTERS = new ArrayList<>();
@@ -52,30 +57,50 @@ public class DateTimeParser {
     }
 
     /**
-     * Result of parsing that includes both the LocalDateTime and whether time was present
+     * Represents the result of parsing a date-time string.
+     * Contains both the parsed LocalDateTime and whether time was present in the input.
      */
     public static class ParseResult {
         private final LocalDateTime dateTime;
         private final boolean hasTime;
 
+        /**
+         * Constructs a ParseResult with the specified date-time and time flag.
+         *
+         * @param dateTime The parsed LocalDateTime.
+         * @param hasTime Whether the input included time information.
+         */
         public ParseResult(LocalDateTime dateTime, boolean hasTime) {
             this.dateTime = dateTime;
             this.hasTime = hasTime;
         }
 
+        /**
+         * Returns the parsed date-time.
+         *
+         * @return The LocalDateTime object, or null if parsing failed.
+         */
         public LocalDateTime getDateTime() {
             return dateTime;
         }
 
+        /**
+         * Checks if the parsed input included time information.
+         *
+         * @return True if time was included, false otherwise.
+         */
         public boolean hasTime() {
             return hasTime;
         }
     }
 
     /**
-     * Parses a date-time string flexibly.
-     * Returns LocalDateTime if parsing succeeds, null if input is plain text.
-     * Returns a ParseResult indicating whether time was included in the input.
+     * Parses a date-time string flexibly using various date and time formats.
+     * Attempts to parse as full date-time first, then date-only, then time-only.
+     * Returns null for the DateTime if the input cannot be parsed as a valid date/time.
+     *
+     * @param input The date-time string to parse.
+     * @return A ParseResult containing the parsed LocalDateTime and whether time was included.
      */
     public static ParseResult parseDateTime(String input) {
         if (input == null || input.trim().isEmpty()) {
