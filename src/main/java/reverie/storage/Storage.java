@@ -224,8 +224,7 @@ public class Storage {
      * @return The created Task object.
      * @throws ReverieException If the task type is unknown or format is invalid.
      */
-    private Task createTaskByType(String taskType, String description, String[] parts)
-            throws ReverieException {
+    private Task createTaskByType(String taskType, String description, String[] parts) throws ReverieException {
         return switch (taskType) {
             case "T" -> createTodo(description, parts);
             case "D" -> createDeadline(description, parts);
