@@ -4,7 +4,19 @@ import reverie.command.*;
 import reverie.exception.ReverieException;
 import reverie.task.*;
 
+/**
+ * Represents the command parser for the Reverie chatbot.
+ * A <code>Parser</code> class parses user input strings into Command objects
+ * that can be executed.
+ */
 public class Parser {
+    /**
+     * Parses the user's full command string into a Command object.
+     *
+     * @param fullCommand The complete command string from the user.
+     * @return The parsed Command object.
+     * @throws ReverieException If the command is empty or unrecognized.
+     */
     public static Command parse(String fullCommand) throws ReverieException {
         String trimmedCommand = fullCommand.trim();
 
@@ -31,6 +43,13 @@ public class Parser {
         };
     }
 
+    /**
+     * Parses a todo command and creates a Todo task.
+     *
+     * @param input The full todo command string.
+     * @return The created Todo task.
+     * @throws ReverieException If the description is empty.
+     */
     private static Task parseTodo(String input) throws ReverieException {
         if (input.length() <= "todo ".length()) {
             throw new ReverieException("The description of a todo cannot be empty!");
@@ -44,6 +63,13 @@ public class Parser {
         return new Todo(description);
     }
 
+    /**
+     * Parses a deadline command and creates a Deadline task.
+     *
+     * @param input The full deadline command string.
+     * @return The created Deadline task.
+     * @throws ReverieException If the format is invalid or required fields are missing.
+     */
     private static Task parseDeadline(String input) throws ReverieException {
         if (input.length() <= "deadline ".length()) {
             throw new ReverieException("""
@@ -75,6 +101,13 @@ public class Parser {
         return new Deadline(description, by);
     }
 
+    /**
+     * Parses an event command and creates an Event task.
+     *
+     * @param input The full event command string.
+     * @return The created Event task.
+     * @throws ReverieException If the format is invalid or required fields are missing.
+     */
     private static Task parseEvent(String input) throws ReverieException {
         String[] parts = getEventParts(input);
 
@@ -95,6 +128,13 @@ public class Parser {
         return new Event(description, from, to);
     }
 
+    /**
+     * Extracts and validates the parts of an event command.
+     *
+     * @param input The full event command string.
+     * @return An array containing description, from, and to parts.
+     * @throws ReverieException If the format is invalid.
+     */
     private static String[] getEventParts(String input) throws ReverieException {
         if (input.length() <= "event ".length()) {
             throw new ReverieException("""
