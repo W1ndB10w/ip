@@ -99,6 +99,11 @@ public class Event extends Task {
         return fromDateTime;
     }
 
+    // Infer the 'to' date when only time is provided
+    private LocalDateTime inferToDateTime() {
+        
+    }
+
     @Override
     public String getFullStatus() {
         String fromString;
