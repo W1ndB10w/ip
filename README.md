@@ -15,7 +15,7 @@ Reverie is a personal task manager chatbot that helps you track todos, deadlines
     - [Viewing Tasks: `list`, `find`, `schedule`](#viewing-tasks-list-find-schedule)
     - [Managing Tasks: `mark`, `unmark`, `delete`](#managing-tasks-mark-unmark-delete)
     - [Exit: `bye`](#exit-bye)
-- [Understanding Task Symbols](#understanding-task-symbols)
+- [Task Symbols](#task-symbols)
 - [Data Storage](#data-storage)
 - [Command Summary](#command-summary)
 - [Tips](#tips)
@@ -299,7 +299,7 @@ Bye. Hope to see you again soon!
 
 ---
 
-## Understanding Task Symbols
+## Task Symbols
 
 * `[T]` = Todo | `[D]` = Deadline | `[E]` = Event
 * `[ ]` = Not done | `[X]` = Done
