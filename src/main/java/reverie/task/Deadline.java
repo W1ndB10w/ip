@@ -1,42 +1,57 @@
 package reverie.task;
 
-import reverie.exception.ReverieException;
-import java.time.LocalDate;
+import reverie.parser.DateTimeParser;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 public class Deadline extends Task {
     protected String by;
-    protected LocalDate byDate;
-    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
+    protected LocalDateTime byDateTime;
+    protected boolean hasTime;
+    private static final DateTimeFormatter OUTPUT_FORMAT_WITH_TIME =
+            DateTimeFormatter.ofPattern("HH:mm MMM dd yyyy", Locale.ENGLISH);
+    private static final DateTimeFormatter OUTPUT_FORMAT_DATE_ONLY =
+            DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH);
 
-    public Deadline(String description, String by) throws ReverieException {
+    // Constructor without time
+    public Deadline(String description, String by) {
         super(description);
         this.by = by;
-        this.byDate = parseDate(by);
+        DateTimeParser.ParseResult result = DateTimeParser.parseDateTime(by);
+        this.byDateTime = result.getDateTime();
+        this.hasTime = result.hasTime();
+    }
+
+    // Constructor with time
+    public Deadline(String description, String by, boolean hasTime) {
+        super(description);
+        this.by = by;
+        DateTimeParser.ParseResult result = DateTimeParser.parseDateTime(by);
+        this.byDateTime = result.getDateTime();
+        this.hasTime = hasTime;
+    }
+
+    public boolean hasTime() {
+        return hasTime;
     }
 
     public String getByString() {
         return by;
     }
 
-    private LocalDate parseDate(String dateString) throws ReverieException {
-        try {
-            return LocalDate.parse(dateString, INPUT_FORMAT);
-        } catch (DateTimeParseException e) {
-            throw new ReverieException("Invalid date format. Please use yyyy-MM-dd (e.g., 2019-12-02)");
-        }
-    }
-
     @Override
     public String getFullStatus() {
-        String dateString = byDate != null ? byDate.format(OUTPUT_FORMAT) : by;
+        String dateString;
+        if (byDateTime != null) {
+            dateString = hasTime ? byDateTime.format(OUTPUT_FORMAT_WITH_TIME) : byDateTime.format(OUTPUT_FORMAT_DATE_ONLY);
+        } else {
+            dateString = by;
+        }
         return "[D]" + super.getFullStatus() + " (by: " + dateString + ")";
     }
 
-    public LocalDate getByDate() {
-        return byDate;
+    public LocalDateTime getByDateTime() {
+        return byDateTime;
     }
 }

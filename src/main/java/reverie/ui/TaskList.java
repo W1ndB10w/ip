@@ -50,7 +50,9 @@ public class TaskList {
         String lowerKeyword = keyword.toLowerCase();
 
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getDescription().toLowerCase().contains(lowerKeyword)) {
+            // Search in the full task representation (including task number and status)
+            String fullEntry = (i + 1) + "." + tasks.get(i).getFullStatus();
+            if (fullEntry.toLowerCase().contains(lowerKeyword)) {
                 matchingIndices.add(i);
             }
         }

@@ -48,8 +48,8 @@ public class Parser {
         if (input.length() <= "deadline ".length()) {
             throw new ReverieException("""
                     The description of a deadline cannot be empty!
-                    Format: deadline <description> /by <time>
-                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
+                    Format: deadline <description> /by <date-time>
+                    Date-time examples: 2019-12-02 1800, 2019-12-02, 1800, Dec 02 2019, meeting tomorrow, etc.""");
         }
 
         String content = input.replaceFirst("(?i)^deadline\\s+", "").trim();
@@ -58,8 +58,8 @@ public class Parser {
         if (parts.length < 2) {
             throw new ReverieException("""
                     Invalid deadline format!
-                    Format: deadline <description> /by <time>
-                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
+                    Format: deadline <description> /by <date-time>
+                    Date-time examples: 2019-12-02 1800, 2019-12-02, 1800, Dec 02 2019, meeting tomorrow, etc.""");
         }
 
         String description = parts[0].trim();
@@ -100,7 +100,7 @@ public class Parser {
             throw new ReverieException("""
                     The description of an event cannot be empty!
                     Format: event <description> /from <start> /to <end>
-                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
+                    Date-time examples: 2019-12-02 1800, 2019-12-02, 1800, Dec 02 2019, etc.""");
         }
 
         String content = input.replaceFirst("(?i)^event\\s+", "").trim();
@@ -110,7 +110,7 @@ public class Parser {
             throw new ReverieException("""
                     Invalid event format!
                     Format: event <description> /from <start> /to <end>
-                    Date format: yyyy-MM-dd (e.g., 2019-12-02)""");
+                    Date-time examples: 2019-12-02 1800, 2019-12-02, 1800, Dec 02 2019, etc.""");
         }
         return parts;
     }

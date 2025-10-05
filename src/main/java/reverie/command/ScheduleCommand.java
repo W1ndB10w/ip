@@ -8,6 +8,7 @@ import reverie.task.Task;
 import reverie.ui.TaskList;
 import reverie.ui.Ui;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -46,12 +47,17 @@ public class ScheduleCommand extends Command {
         for (int i = 0; i < allTasks.size(); i++) {
             Task task = allTasks.get(i);
             if (task instanceof Deadline deadline) {
-                if (deadline.getByDate() != null && deadline.getByDate().equals(targetDate)) {
+                LocalDateTime byDateTime = deadline.getByDateTime();
+                if (byDateTime != null && byDateTime.toLocalDate().equals(targetDate)) {
                     matchingIndices.add(i);
                 }
             } else if (task instanceof Event event) {
-                if (event.getFromDate() != null && event.getToDate() != null) {
-                    if (!targetDate.isBefore(event.getFromDate()) && !targetDate.isAfter(event.getToDate())) {
+                LocalDateTime fromDateTime = event.getFromDateTime();
+                LocalDateTime toDateTime = event.getToDateTime();
+                if (fromDateTime != null && toDateTime != null) {
+                    LocalDate fromDate = fromDateTime.toLocalDate();
+                    LocalDate toDate = toDateTime.toLocalDate();
+                    if (!targetDate.isBefore(fromDate) && !targetDate.isAfter(toDate)) {
                         matchingIndices.add(i);
                     }
                 }

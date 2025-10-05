@@ -90,11 +90,14 @@ public class Storage {
     }
 
     private String formatDeadline(Deadline deadline, String isDone) {
-        return "D | " + isDone + " | " + deadline.getDescription() + " | " + deadline.getByString();
+        return "D | " + isDone + " | " + deadline.getDescription() + " | " +
+                deadline.getByString() + " | " + (deadline.hasTime() ? "1" : "0");
     }
 
     private String formatEvent(Event event, String isDone) {
-        return "E | " + isDone + " | " + event.getDescription() + " | " + event.getFromString() + " | " + event.getToString();
+        return "E | " + isDone + " | " + event.getDescription() + " | " +
+                event.getFromString() + " | " + event.getToString() + " | " +
+                (event.hasTime() ? "1" : "0");
     }
 
     private Task parseTaskFromFile(String line) throws ReverieException {
@@ -138,17 +141,29 @@ public class Storage {
     }
 
     private Task createDeadline(String description, String[] parts) throws ReverieException {
-        if (parts.length != 4) {
+        if (parts.length == 4) {
+            // Old format without hasTime flag - default to false (date only)
+            return new Deadline(description, parts[3].trim(), false);
+        } else if (parts.length == 5) {
+            // New format with hasTime flag
+            boolean hasTime = parts[4].trim().equals("1");
+            return new Deadline(description, parts[3].trim(), hasTime);
+        } else {
             throw new ReverieException("Invalid Deadline format");
         }
-        return new Deadline(description, parts[3].trim());
     }
 
     private Task createEvent(String description, String[] parts) throws ReverieException {
-        if (parts.length != 5) {
+        if (parts.length == 5) {
+            // Old format without hasTime flag - default to false (date only)
+            return new Event(description, parts[3].trim(), parts[4].trim(), false);
+        } else if (parts.length == 6) {
+            // New format with hasTime flag
+            boolean hasTime = parts[5].trim().equals("1");
+            return new Event(description, parts[3].trim(), parts[4].trim(), hasTime);
+        } else {
             throw new ReverieException("Invalid Event format");
         }
-        return new Event(description, parts[3].trim(), parts[4].trim());
     }
     /* private static final String FILE_PATH = "./data/reverie.txt";
     private static final String DATA_DIRECTORY = "./data";
