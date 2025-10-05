@@ -59,16 +59,4 @@ public class TaskList {
 
         return matchingIndices;
     }
-    /* public TaskList findTasks(String keyword) {
-        ArrayList<Task> matchingTasks = new ArrayList<>();
-        String lowerKeyword = keyword.toLowerCase();
-
-        for (Task task : tasks) {
-            if (task.description.toLowerCase().contains(lowerKeyword)) {
-                matchingTasks.add(task);
-            }
-        }
-
-        return new TaskList(matchingTasks);
-    } */
 }
