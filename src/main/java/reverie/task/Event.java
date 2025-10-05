@@ -73,6 +73,11 @@ public class Event extends Task {
         return toDateTime;
     }
 
+    // Infer the 'from' date when only time is provided
+    private LocalDateTime inferFromDateTime() {
+        
+    }
+
     @Override
     public String getFullStatus() {
         String fromString;
