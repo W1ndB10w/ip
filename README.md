@@ -10,11 +10,11 @@ Reverie is a personal task manager chatbot that helps you track todos, deadlines
 - [Quick Start](#quick-start)
 - [Features](#features)
     - [Understanding Commands](#understanding-commands)
-    - [Adding Tasks](#adding-tasks)
+    - [Adding Tasks: `todo`, `deadline`, `event`](#adding-tasks-todo-deadline-event)
     - [Date & Time Formats](#date--time-formats)
-    - [Viewing Tasks](#viewing-tasks)
-    - [Managing Tasks](#managing-tasks)
-    - [Exit](#exit)
+    - [Viewing Tasks: `list`, `find`, `schedule`](#viewing-tasks-list-find-schedule)
+    - [Managing Tasks: `mark`, `unmark`, `delete`](#managing-tasks-mark-unmark-delete)
+    - [Exit: `bye`](#exit-bye)
 - [Understanding Task Symbols](#understanding-task-symbols)
 - [Data Storage](#data-storage)
 - [Command Summary](#command-summary)
@@ -47,9 +47,9 @@ Reverie is a personal task manager chatbot that helps you track todos, deadlines
 
 ---
 
-### Adding Tasks
+### Adding Tasks: `todo`, `deadline`, `event`
 
-#### Todo
+#### Todo: `todo`
 Simple tasks without dates.
 
 **Format:** `todo DESCRIPTION`  
@@ -66,7 +66,7 @@ Now you have 1 task in the list.
 
 ---
 
-#### Deadline
+#### Deadline: `deadline`
 Tasks with a due date/time.
 
 **Format:** `deadline DESCRIPTION /by DATE_TIME`  
@@ -94,7 +94,7 @@ Now you have 3 tasks in the list.
 
 ---
 
-#### Event
+#### Event: `event`
 Tasks with start and end times.
 
 **Format:** `event DESCRIPTION /from START /to END`  
@@ -171,9 +171,9 @@ Reverie accepts specific date and time formats:
 
 ---
 
-### Viewing Tasks
+### Viewing Tasks: `list`, `find`, `schedule`
 
-#### List all tasks
+#### List all tasks: `list`
 
 **Format:** `list`  
 **Case-sensitivity:** Command word `list` is case-insensitive.
@@ -190,7 +190,7 @@ Here are the tasks in your list:
 
 ---
 
-#### Find tasks
+#### Find tasks: `find`
 Search by keyword (case-insensitive match).
 
 **Format:** `find KEYWORD`  
@@ -216,7 +216,7 @@ Here are the matching tasks in your list:
 
 ---
 
-#### View schedule
+#### View schedule: `schedule`
 See tasks on a specific date. **Date must be in `yyyy-MM-dd` format only.**
 
 **Format:** `schedule DATE`  
@@ -235,9 +235,9 @@ Here are the tasks scheduled for Dec 02 2019:
 
 ---
 
-### Managing Tasks
+### Managing Tasks: `mark`, `unmark`, `delete`
 
-#### Mark as done
+#### Mark as done: `mark`
 
 **Format:** `mark TASK_NUMBER`  
 **Case-sensitivity:** Command word `mark` is case-insensitive.
@@ -252,7 +252,7 @@ Nice! I've marked this task as done:
 
 ---
 
-#### Mark as not done
+#### Mark as not done: `unmark`
 
 **Format:** `unmark TASK_NUMBER`  
 **Case-sensitivity:** Command word `unmark` is case-insensitive.
@@ -267,7 +267,7 @@ OK, I've marked this task as not done yet:
 
 ---
 
-#### Delete task
+#### Delete task: `delete`
 
 **Format:** `delete TASK_NUMBER`  
 **Case-sensitivity:** Command word `delete` is case-insensitive.
@@ -285,7 +285,7 @@ Now you have 4 tasks in the list.
 
 ---
 
-### Exit
+### Exit: `bye`
 
 **Format:** `bye`  
 **Case-sensitivity:** Command word `bye` is case-insensitive.
